@@ -1,0 +1,947 @@
+\ifx\allfiles\undefined
+\documentclass[a4paper,fleqn]{cas-sc}
+% \documentclass[a4paper,fleqn,longmktitle]{cas-sc}
+\usepackage{rotating}
+\usepackage{appendix}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{tabularray}
+\usepackage[authoryear]{natbib}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\paragraph}
+  {\normalfont\normalsize\bfseries}{\theparagraph}{2em}{}
+\titlespacing*{\paragraph}{0pt}{0.5em}{0.5em}
+\let\printorcid\relax
+\definecolor{rv}{rgb}{0, 0.501, 0.675}
+\hypersetup{
+  linkcolor = rv,  % 使用自定义颜色 rv
+  citecolor = rv,  % 可以为引用也设置同样的颜色或另外选择
+  urlcolor = rv    % 设置外部链接颜色
+}
+%%%Author macros
+\def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
+\tsc{WGM}
+\tsc{QE}
+%%%
+
+% Uncomment and use as if needed
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newdefinition{rmk}{Remark}
+%\newproof{pf}{Proof}
+%\newproof{pot}{Proof of Theorem \ref{thm}}
+\captionsetup[figure]{labelfont={bf},name={Fig. },labelsep=period}
+% \captionsetup[table]{ labelsep=newline,singlelinecheck=true }
+\captionsetup[table]{labelfont={bf},labelsep=period,name={Table}} 
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{. 001}
+
+% Short title
+\shorttitle{} 
+
+% Short author
+\shortauthors{ {Zhou et al. }}
+
+% Main title of the paper
+\title [mode = title]{Twenty-five years of the intelligent driver model: Bibliometric Analysis and Systematic Review with Critical Reflections}
+% Author Information
+\author[label1,label2]{Shirui Zhou}
+\ead{shiruizhou@tju.edu.cn}
+
+\author[label4]{H. M. Zhang}
+\ead{hmzhang@ucdavis.edu.cn}
+
+\author[label3]{Shiteng Zheng}
+\ead{stzheng1@bjtu.edu.cn}
+
+% \author[label4]{Martin Treiber}
+% \ead{martin@mtreiber.de}
+
+\author[label1,label2]{Junfang Tian}
+\cormark[1]
+\ead{jftian@tju.edu.cn}
+
+\author[label3]{Rui Jiang}
+\cormark[1]
+\ead{jiangrui@bjtu.edu.cn}
+
+
+
+\affiliation[label1]{organization={Institute of Systems Engineering, College of Management and Economics, Tianjin University},
+addressline={No. 92 Weijin Road},
+city={Nankai District},
+postcode={300072},
+state={Tianjin},
+country={China}}
+\affiliation[label2]{organization={Laboratory of Computation and Analytics of Complex Management Systems (CACMS),Tianjin University},
+addressline={No. 92 Weijin Road},
+city={Nankai District},
+postcode={300072},
+state={Tianjin},
+country={China}}
+\affiliation[label4]{organization={Department of Civil and Environmental Engineering, University of California Davis},
+            addressline={2001 Ghausi Hall Davis},
+            city={Davis},
+            postcode={95616},
+            state={California},
+            country={United States}}   
+\affiliation[label3]{organization={School of Systems Science, Beijing Jiaotong University},
+addressline={No. 3 Shangyuancun},
+city={Haidian District},
+postcode={100044},
+state={Beijing},
+country={China}}
+    
+% \affiliation[label4]{organization={Institute for Transport and Economics, Dresden University of Technology},
+% addressline={Würzburger Str. 35},
+% city={Dresden},
+% postcode={D-01062},
+% state={Saxony},
+% country={Germany}}
+% Corresponding author text
+\cortext[1]{Corresponding author. }
+
+% For a title note without a number/mark
+% \nonumnote{}
+
+% Here goes the abstract
+\begin{abstract}
+The Intelligent Driver Model (IDM), introduced by \cite{treiberCongestedTrafficStatesEmpirical2000}, quickly became one of the most widely adopted and influential models in traffic flow theory due to its simplicity, computational efficiency, and ability to accurately capture traffic dynamics. Over the past 25 years, IDM has established itself as a cornerstone in intelligent transportation systems, advancing the understanding of car-following behavior and enabling applications in autonomous driving and connected vehicle systems. To commemorate IDM’s 25th anniversary, this study conducts a comprehensive bibliometric analysis, identifying key research trends, influential studies, and leading contributors. The paper systematically reviews IDM’s foundational structure, academic influence, critical limitations, and extensions, along with its diverse applications in traffic stability, bottleneck management, and intelligent transportation systems. Future research directions are proposed, focusing on the integration of big data, hybrid modeling, digital twin technologies, and human-machine interaction to address existing limitations and enhance IDM’s versatility in modern traffic systems.
+\end{abstract}
+
+% Keywords
+% Each keyword is seperated by \sep
+\begin{keywords}
+Intelligent driver model\sep Bibliometric analysis\sep Driving behavior modeling\sep Car following \sep Traffic dynamics
+\end{keywords}
+
+\maketitle
+% Main text
+
+
+\section{Introduction}
+
+Understanding and predicting traffic flow dynamics require accurate modeling of individual vehicle behavior, which serves as a foundation for both theoretical explorations and practical engineering applications in transportation systems. Among the various modeling approaches, car-following models play a pivotal role by describing how drivers adjust their vehicle speed based on interactions with surrounding vehicles. These models provide essential tools for analyzing traffic stability, simulating diverse traffic scenarios, and optimizing intelligent transportation systems (ITS). Over the decades, several classical car-following models have been proposed, including the GM model \citep{chandlerTrafficDynamicsStudiesCar1958}, the GHR model \citep{gazisNonlinearFollowLeaderModelsTraffic1961}, Gipps’ model \citep{gippsBehaviouralCarfollowingModelComputer1981}, the Wiedemann model \citep{wiedemann1992microscopic}, the Optimal Velocity Model (OVM, \cite{bandoDynamicalModelTrafficCongestion1995}), the Full Velocity Difference Model (FVDM, \cite{jiangFullVelocityDifferenceModel2001}), and Newell’s model \citep{newellSimplifiedCarfollowingTheoryLower2002}. Each of these models has contributed to advancing our understanding of driver behavior and traffic flow, offering varying levels of realism, computational efficiency, and theoretical rigor.
+
+Among these, the Intelligent Driver Model (IDM), introduced by \cite{treiberCongestedTrafficStatesEmpirical2000}, has emerged as one of the most widely adopted car-following models in traffic flow research and applications. IDM is recognized for its simplicity, computational efficiency, and strong physical interpretability. Unlike earlier models, IDM conceptualizes vehicles as intelligent agents, dynamically adjusting their acceleration based on nonlinear interactions with the leading vehicle, while incorporating factors such as desired speed, safe distance, and relative velocity. This design allows IDM to capture a wide range of traffic states, including free flow, congestion, and stop-and-go oscillations, and to model complex phenomena like phase transitions, hysteresis, and multi-stability. Its versatility has made IDM a benchmark in both theoretical traffic flow studies and practical ITS applications.
+
+Since its introduction in 2000, IDM has been extensively utilized in academic research and real-world applications. It has facilitated advancements in understanding car-following behavior, deriving fundamental diagrams, and analyzing traffic flow stability. Moreover, IDM has been integrated into widely used platforms such as SUMO, enabling its application in evaluating vehicle-to-vehicle (V2V) and vehicle-to-infrastructure (V2I) communication technologies, as well as in testing advanced driver-assistance systems (ADAS) and autonomous vehicle control algorithms. However, despite its widespread adoption, IDM’s deterministic framework and simplified assumptions face challenges in capturing real-world traffic complexities, such as stochastic variability, driver heterogeneity, and the interactions between human-driven vehicles (HVs) and connected and autonomous vehicles (CAVs).
+
+Given IDM’s foundational role in traffic flow modeling and the growing demands of modern transportation systems, this paper aims to systematically evaluate the model’s development, impact, and future potential over the past 25 years. Specifically, this study focuses on:
+
+\begin{itemize}
+    \item Summarizing IDM’s theoretical foundations and its contributions to advancing car-following theory.
+    \item Conducting a bibliometric analysis to map IDM’s academic influence, highlighting key trends, contributors, and research themes.
+    \item Critically assessing IDM’s limitations and exploring its extensions to address stochasticity, driver variability, and hybrid modeling approaches.
+    \item Reviewing IDM’s diverse applications, including its role in traffic stability analysis, parameter calibration, bottleneck management, and interdisciplinary domains such as vehicular communications and infrastructure modeling.
+    \item Proposing future research directions to enhance IDM’s adaptability and relevance in modern traffic systems, leveraging big data, hybrid modeling, digital twin technologies, and human-machine interaction.
+\end{itemize}
+
+This paper is organized as follows: Section~\ref{sec:fundamentals} introduces IDM’s theoretical foundations and key properties. Section~\ref{sec:bibliometric} presents a bibliometric analysis of IDM-related research. Section~\ref{sec:limitations} discusses IDM’s limitations and extensions. Section~\ref{sec:applications} reviews IDM’s practical applications, and Section~\ref{sec:future} outlines future research directions. Finally, Section~\ref{sec:conclusion} concludes with reflections on IDM’s legacy and future potential.
+
+
+\begin{table}[htbp]
+\centering
+\caption{Abbreviations and full names of concepts in IDM-related research.}
+\scriptsize
+\label{tab:abb}
+\begin{tblr}{
+  hline{1,15} = {-}{0.08em},
+  hline{2} = {-}{},
+    row{odd} = {gray9}   % 偶数行背景灰色，便于区分
+}
+Abbreviations & Full names\\
+ACC & Adaptive Cruise Control\\
+CACC & Cooperative Adaptive Cruise Control\\
+HV & Human-driven Vehicle\\
+AV & Autonomous Vehicle\\
+CV & Connected Vehicle\\
+CAV & Connected and Autonomous Vehicle\\
+RL  & Reinforcement Learning\\
+V2X & Vehicle to Everything\\
+FF & Free Flow\\
+CF & Car Following\\
+MCMC & Markov Chain Monte Carlo\\
+VANET & Vehicular Ad-hoc Network\\
+VSL & Variable Speed Limits
+\end{tblr}
+\end{table}
+
+\section{Fundamental Introduction and Analysis of the IDM}
+\label{sec:fundamentals}
+Before conducting a systematic bibliometric analysis and critical review of the literature on IDM, this section will carefully introduce and summarize its basic features based on the cornerstone research related to the basic IDM, considering that this model is a key tool to capture the dynamics of individual vehicles and a fundamental model of emergent phenomena in traffic systems. We first conduct a formal analysis of IDM to study its mathematical foundations and behavioral assumptions. Next, we will explore traffic fluctuations in IDM to understand how vehicle interactions lead to emergent flow patterns and instabilities. We will also analyze spatiotemporal traffic phases, focusing on the ability of IDM to capture complex traffic phenomena at different temporal and spatial scales. For clarity and ease of reading, we use several abbreviations. Table \ref{tab:abb} provides a list of the frequently used abbreviations along with their full names.
+
+\subsection{Model Structure and Philosophies}
+
+\subsubsection{Model Structure}
+
+The formulation of basic IDM is as follows:
+
+\begin{equation}
+a_n(t) = a \left[ 1 - \left( \frac{v_n(t)}{v_0} \right)^{\delta }- \left( \frac{s^*_n(t)}{s_n(t)} \right)^2 \right]
+\label{equ:IDM1}
+\end{equation}
+where $ a_n(t) $ represents the vehicle's acceleration, $ a $ is the maximum acceleration, $ v_n(t) $ is the current velocity, $ v_0 $ is the desired velocity, $ s_n(t) $ is the actual spacing, and $ s^*_n(t) $ is the desired dynamic spacing. {The exponent $\delta$ determines  how quickly acceleration decreases as a vehicle approaches its desired speed.} The desired spacing $ s^*_n(t) $ is defined as:
+
+\begin{equation}
+s^*_n(t) = s_0 + \max \left( T v_n(t) + \frac{v_n(t) \Delta v_n(t)}{2\sqrt{ab}}, 0 \right)
+\label{equ:IDM2}
+\end{equation}
+
+where $ s_0 $ is the minimum spacing, $ T $ is the desired time gap, $ \Delta v_n(t) = v_n(t) - v_{n-1}(t) $ is the velocity difference to the preceding vehicle $n-1$, and $ b $ is the comfortable deceleration. The model captures critical driving behaviors by decreasing acceleration as the vehicle approaches its desired speed and ensuring safety through dynamic spacing. 
+
+The third term in the desired gap formula, $\frac{v \Delta v}{2\sqrt{ab}}$, reflects the principle of \textit{kinematic deceleration}. This term is derived from the classical braking distance formula:
+
+\begin{equation}
+d = \frac{v^2}{2a},
+\end{equation}
+
+which quantifies the distance required to stop under constant deceleration. In the IDM, this component ensures that the vehicle maintains a sufficient safety margin when approaching a slower lead vehicle. By incorporating the relative speed $\Delta v$ between vehicles, the model enables smooth and anticipative deceleration, preventing abrupt braking and reducing the risk of collisions. This "intelligent braking strategy" is a core feature of the IDM and one of the key reasons for its ease of use and popularity.
+
+The safety property of the IDM arises directly from the structure of its desired gap function. The model ensures that a following vehicle maintains a minimum time headway of $T$, while dynamically reacting to closing speeds through the interaction term. When the actual gap $s$ falls below the desired gap $s^*$, the braking term in the acceleration equation becomes dominant, triggering rapid deceleration to prevent potential collisions. This mechanism guarantees collision-free operation as long as the physical braking limits are not exceeded (e.g., under extreme driver behavior or external disturbances).
+
+The collision-free nature of the IDM has been analytically validated and confirmed through simulation studies (e.g., \cite{treiberTrafficFlowDynamics2013}). This robust safety property makes IDM particularly well-suited for applications such as Advanced Driver Assistance Systems (ADAS), where proactive collision avoidance is critical.
+
+Moreover, as outlined in Equations (\ref{equ:IDM1}) and (\ref{equ:IDM2}), the IDM is a nonlinear car-following model characterized by six parameters: $a$, $b$, $v_0$, $\delta$,$s_0$, and $T$. According to \cite{treiberMicroscopicCalibrationValidationCarFollowing2013}, these parameters are intuitive, each is related to a specific driving regime: the desired speed $v_0$ is relevant for cruising in free-flow scenarios, the desired time gap $T$ pertains to steady-state car-following, the minimum gap $s_0$ is associated with creeping and standing traffic, and the maximum acceleration $a$ and desired deceleration $b$ relate to non-steady traffic flow. The exponent $\delta$ governs this reduction: a larger $\delta$ delays the reduction in acceleration as the vehicle approaches the desired velocity. In the limit $\delta \to \infty$ the acceleration curve aligns with that of the Gipps model, while $\delta=1 $ replicates the overly smooth acceleration behavior characteristic of the optimal velocity model. This design not only makes IDM have strong physical meaning, but also has analytical value. 
+
+\subsubsection{Model Philosophies}
+
+In addition to the parameters with obvious physical meanings, IDM also effectively captures the acceleration behavior of drivers by balancing two key components: a non-interaction term and an interaction term. The model defines the desired speed as the maximum attainable speed in free-flow conditions (FF), where drivers can accelerate smoothly to maintain this speed without hindrance. However, in car-following scenarios (CF), the driver's ability to reach the desired speed is constrained by the leading vehicle, although the goal to achieve this speed remains unchanged. The IDM acceleration formula incorporates a non-interaction term, reflecting the driver's acceleration in the absence of external influences, and an interaction term, which accounts for the deceleration required due to the presence of a leading vehicle. In FF conditions, acceleration is primarily determined by the non-interaction term, while in CF conditions, both terms significantly influence the dynamics. The relative weight of these terms in IDM is dependent on the driver's current speed, the speed of the leading vehicle, and the distance between them. These factors collectively ensure that the IDM provides a nuanced and realistic depiction of vehicle dynamics across diverse traffic scenarios.
+
+Hence, IDM is widely used not only because it has a clear physical meaning, but also because it was developed with some basic assumptions built on the modeling philosophy \citep{treiberTrafficFlowDynamics2013}:
+
+\begin{enumerate}
+    \item \textbf{Acceleration Conditions}: The acceleration must satisfy specific general conditions to ensure a complete model.
+
+    \item \textbf{Equilibrium Distance}: The minimum safe following distance to the leading vehicle should be no less than a designated "safe distance," calculated as $s_0 + vT$, where $s_0$ is the minimum gap and $T$ is the time gap to the leading vehicle.
+
+    \item \textbf{Braking Strategy}: An intelligent braking approach governs interactions with slower vehicles or obstacles:
+    \begin{itemize}
+        \item Under normal conditions, braking is gradual, smoothly reducing deceleration to zero as the vehicle approaches a steady state or stops.
+        \item In critical situations, the deceleration exceeds comfortable levels until safety is restored, after which it resumes normal deceleration.
+    \end{itemize}
+
+    \item \textbf{Smooth Mode Transitions}: Transitions between driving modes, such as from acceleration to car-following, are smooth. The model ensures that the jerk, or the derivative of acceleration, remains finite, indicating continuous differentiability across variables.
+
+    {\item \textbf{Model Parsimony}: The model should be as simple as possible, aiding in effective calibration.}
+\end{enumerate}
+
+
+\subsubsection{Connections with Previous Classic Models}
+
+The modeling philosophy of IDM is not an isolated concept but builds upon a rich history of car-following theories. Many of its principles, including safety constraints, equilibrium distances, and smooth transitions between driving states, are inspired by or extend ideas from earlier car-following models. To fully understand its motivations and distinctive characteristics, it is essential to examine its relationship to foundational models such as the GM model \citep{chandlerTrafficDynamicsStudiesCar1958}, the OVM \citep{bandoDynamicalModelTrafficCongestion1995} and the Gipps model \citep{gippsBehaviouralCarfollowingModelComputer1981}. IDM synthesizes and extends their strengths while addressing their inherent limitations, resulting in a model that is both comprehensive and robust.
+
+The GM model, one of the earliest car-following frameworks, highlights the importance of relative speed (velocity difference) as a key factor influencing driver behavior. Specifically, it assumes that the acceleration of a following vehicle is proportional to the velocity difference and inversely proportional to the headway between vehicles. This foundational approach captures drivers' tendency to react to both distance and speed differences but oversimplifies real-world behavior by assuming a linear relationship between these variables. Moreover, the GM model does not account for explicit safety constraints, such as minimum headways or emergency braking mechanisms. IDM addresses these shortcomings by introducing a nonlinear interaction term that captures the effects of both relative speed and headway more realistically. Additionally, IDM incorporates explicit safety measures, ensuring collision-free behavior and smooth transitions between free-flow and car-following conditions.
+
+The OVM emphasizes the importance of "optimal spacing" in car-following behavior. It assumes that drivers adjust their acceleration to minimize the difference between their current speed and a desired speed, which depends solely on the headway to the leading vehicle. This simple and intuitive framework provides insights into equilibrium spacing and car-following dynamics. However, the OVM assumes instantaneous driver reactions, neglecting the finite reaction times observed in real-world driving. It also lacks explicit safety constraints, such as minimum headways or braking strategies, making it insufficient for modeling close-following scenarios or sudden deceleration events. IDM improves upon OVM by incorporating safety constraints and modeling the dynamic interactions between relative speed and headway, thereby addressing these deficiencies.
+
+The Gipps model introduces the concept of "safe speed," explicitly ensuring collision-free behavior by predicting the position of the leading vehicle after a reaction time interval and limiting acceleration and deceleration accordingly. This focus on safety is a significant advancement compared to earlier models. However, the Gipps model relies on piecewise-defined functions, which are not smooth or continuous. This lack of smoothness makes it unsuitable for analyzing higher-order dynamics, such as jerk (the rate of change of acceleration), and hinders its ability to simulate smooth transitions between driving states. IDM inherits the focus on safety constraints from the Gipps model but improves upon it with a continuous and differentiable formulation. This smoothness not only ensures finite jerk but also enables realistic transitions between driving modes, such as accelerating to a desired speed or braking to avoid collisions.
+
+The FVDM, which extends the OVM, incorporates the influence of both the velocity difference and the optimal spacing, making it a hybrid model that combines features of the GM and OVM frameworks. While FVDM provides a more realistic description of car-following behavior by including velocity differences, its structural design does not inherently ensure accident-free dynamics. This limitation arises because FVDM lacks explicit safety constraints like those in IDM. On the other hand, the simpler structure of FVDM, inherited from the OVM, makes it more amenable to theoretical analysis. IDM, while more complex, ensures accident-free behavior by construction, as it incorporates both safety constraints and a nonlinear interaction term. However, the added complexity of IDM's structure makes it more challenging to analyze theoretically compared to FVDM.
+
+In summary, IDM bridges the conceptual gaps between these classical models while addressing their specific limitations. From the GM model, IDM inherits the emphasis on velocity differences but refines it with nonlinear dynamics. From the OVM and FVDM, IDM adopts the concept of desired spacing while ensuring safety through explicit constraints. From the Gipps model, it incorporates the idea of safe speeds but improves smoothness and differentiability. This unification of ideas, combined with its ability to model diverse traffic scenarios, explains why IDM has become a cornerstone of car-following modeling in the past decades.
+
+\subsection{Basic Properties of IDM}
+
+Before applying the IDM in traffic simulations and related research, it is critical to understand its fundamental properties to ensure reliable and realistic results. This section focuses on two key aspects: numerical properties (including numerical update schemes and parameter calibration) and traffic stability, emphasizing their relevance for practical applications such as Advanced Driver Assistance Systems (ADAS) and large-scale traffic simulations.
+
+\subsubsection{Numerical Properties}
+
+For numerical update schemes of the IDM, \cite{treiberComparingNumericalIntegrationSchemes2015} compared four explicit integration methods: Euler method, ballistic update, Heun method (trapezoidal rule), and standard fourth-order Runge-Kutta (RK4). The study found that while RK4 and Heun methods performed best in smoothing trajectories, the ballistic update outperformed the Euler method in all cases, even though both are first-order schemes. The ballistic method also showed higher computational efficiency, requiring only 30\% of the computation time of the Euler method at the same accuracy. Although the default in SUMO and AIMSUN is the Euler update method, based on the belief that Euler is faster, this choice overlooks the error accuracy. However, SUMO also provides configuration options for the ballistic method. The ballistic scheme is, for all practical purposes, the best method, particularly outperforming RK4 and Euler. While RK4 has a higher consistency order (4), its advantage diminishes when lane changes or other discrete events are included, reducing the overall consistency order to 1. Although both Euler and the ballistic scheme share the same consistency order (1), the ballistic method has a much smaller numerical error prefactor. Furthermore, the ballistic method, with larger update time gaps, can be interpreted as a representation of the human factor of "limited attention span/action points," where actions (e.g., changes in acceleration) only occur at each timestep. This practical advantage has made the ballistic scheme widely adopted in simulations and research, with SUMO offering it as an alternative to the default Euler method. VENSIM, on the other hand, provides all update rules for selection.
+
+
+From the parameter calibration perspective, \cite{treiberMicroscopicCalibrationValidationCarFollowing2013} explored methodologies for calibrating CF models based on IDM. They emphasized criteria for assessing model quality in addition to RMSE, including completeness, robustness, parameter orthogonality, and intuitive parameters aligned with plausible values. The study highlighted that global calibration based on gaps is more reliable than local calibration or those based on speeds or accelerations. Moreover, they found that a sampling rate of 1 Hz suffices, with data completeness and a minimum interval of 300 seconds being crucial for accurate calibration, while data smoothing had minimal impact. \cite{sharmaMoreAlwaysBetterImpact2019b} found that there is no one-to-one correspondence between IDM parameters and driving regimes. Specifically, the acceleration behavior of the IDM driver in a specific state is controlled by the interaction of multiple IDM parameters.This highlights the importance of considering parameter interactions and dataset characteristics when interpreting IDM calibration results. \cite{punzo_we_2015} conducted a comprehensive analysis of IDM parameters, identifying the \textit{minimum time headway} $T$ as the most influential parameter in determining model performance and stability. Sensitivity analysis revealed that $T$ explains the majority of performance variability, followed by the \textit{acceleration exponent} $\alpha$ and \textit{maximum acceleration} $a$. To balance model simplicity and performance, they proposed a simplified IDM configuration by fixing less influential parameters, achieving faster convergence while maintaining comparable accuracy. This aligns with other findings emphasizing the importance of prioritizing key parameters during calibration for robust model performance.
+
+To summarize, IDM's basic properties, particularly its collision-free behavior, efficient numerical integration schemes, and sensitivity to key parameters $T$, $\alpha$, and $a$, are critical for its applicability in traffic simulations. Understanding and leveraging these properties ensures robust and realistic modeling, while advanced calibration techniques and computationally efficient updates enhance the model’s practicality in real-world applications.
+
+
+\subsubsection{Traffic Stability}
+
+From the perspective of traffic flow mechanisms, the IDM has been extensively investigated for its ability to capture traffic instabilities, such as stop-and-go waves. These instabilities arise from delays in drivers adjusting their speed to actual conditions, leading to oscillations where vehicles repeatedly decelerate and accelerate rather than maintaining a steady pace. Such oscillations propagate upstream, amplifying congestion, increasing travel times, fuel consumption, and emissions, with significant implications for traffic efficiency and safety.
+
+The ability of the IDM to reproduce these instability mechanisms is rooted in its \textit{string stability} properties, which depend on parameters such as the sensitivity of the equilibrium speed to gap changes $v'_e(s)$, the driver's maximum acceleration $a$, the comfortable deceleration $b$, and the desired time headway $T$. Here $v_e(s)$ represents the equilibrium speed that a driver aims to maintain based on the current vehicle gap $s$ under steady-state traffic conditions.  .Higher sensitivity $v'_e(s)$ increases instability, while larger values of $a$ and $b$ improve stability by enabling smoother reactions. The desired time headway $T$ is particularly critical, as shorter $T$ values lead to higher instability due to reduced reaction time.
+
+For low speeds $v_e \to 0$, the stability condition simplifies to:
+\begin{equation}
+    a \geq \frac{s_0}{T^2},
+\end{equation}
+where $s_0$ is the minimum gap. This condition indicates that at low speeds, the driver's maximum acceleration $a$ must exceed a threshold determined by the minimum gap $s_0$ and the desired time headway $T$ to maintain traffic flow stability.
+
+Furthermore, \cite{treiberTrafficFlowDynamics2013} provides a detailed analysis of IDM's stability properties. In summary, the factors influencing string stability can be described as follows:
+\begin{itemize}
+    \item \textbf{Sensitivity to gap changes $v'_e(s)$}: Higher sensitivity increases the tendency for string instability, as vehicles overreact to changes in the gap.
+    \item \textbf{Maximum acceleration $a$ and comfortable deceleration $b$}: Larger values enhance stability by allowing drivers to react more smoothly to disturbances.
+    \item \textbf{Desired time headway $T$}: Shorter time headways lead to increased instability because of reduced reaction times.
+\end{itemize}
+
+The interplay of these parameters determines the overall stability of traffic flow modeled by IDM. For more insights and mathematical formulations, readers are referred to \cite{treiberTrafficFlowDynamics2013}.
+
+Over the past 25 years, IDM has found wide application in traffic simulations and research precisely because of its ability to model traffic instabilities and stop-and-go waves. Contrary to what is often stated, the stability of the IDM is NOT a problem for practical applications. In fact, IDM is often parameterized to intentionally reproduce traffic flow instabilities for studying phenomena like congestion and wave propagation. However, if a more stable IDM is required, the acceleration parameter $a$ is the main lever to control stability. The higher the value of $a$, the more stable the IDM (and its derivatives) becomes. For example, realistic values such as $a > 1.5 , \text{m/s}^2$ yield a stable IDM under nearly all other plausible parameter combinations. While such configurations will not produce traffic waves, they demonstrate the flexibility of the IDM to adapt to different stability requirements in practice. This adaptability has solidified the IDM's position as one of the most widely used car-following models in traffic simulations.
+
+Despite its practical utility, the IDM does exhibit limitations when compared to empirical observations. For instance, while IDM can reproduce certain instability phenomena, such as upstream-propagating convective instabilities and transitions between convective and absolute instabilities, its predictive accuracy for traffic fluctuations is limited due to inherent oversimplifications. In \cite{jiangTrafficExperimentRevealsNature2014}, experimental evidence shows that traffic oscillations exhibit a concave growth pattern, where the standard deviation of vehicle acceleration increases concavely as the disturbance propagates upstream in a platoon (see Fig. \ref{fig:IDMGrowth}). This finding has been further validated using various datasets, including NGSIM data and controlled experiments, such as the 25- and 51-vehicle platoon experiments in Hefei (\cite{jiangExperimentalFeaturesCarfollowingBehavior2015}; \cite{tianEmpiricalAnalysisSimulationConcave2016}; \cite{tianCellularAutomatonModelSimulating2016}). Together, these studies confirm that the concave growth of traffic oscillations is a universal phenomenon observed under different traffic conditions and experimental settings. In contrast, traditional car-following models, such as the IDM, inherently predict a convex growth pattern of oscillations due to the linear instability of their steady-state solutions \citep{wangStabilityAnalysisStochasticLinear2020}. This convex growth highlights a critical limitation of IDM, as it fails to capture the empirically observed concave growth, which is essential for accurately modeling traffic flow dynamics.
+
+Moreover, the IDM assumes a deterministic framework that overlooks the stochastic and heterogeneous nature of driver behavior, which plays a significant role in traffic stability. Further insights from \cite{tianRoleSpeedAdaptationSpacing2019} suggest that the fundamental mechanism driving traffic fluctuations lies in the competition between speed adaptation and stochastic effects, rather than being solely attributed to reaction delay as assumed in the IDM. Their analysis of car-following behavior in a 25-car platoon experiment shows that reaction delay has a negligible effect on fluctuation growth, while the interplay of speed adaptation and stochastic disturbance dominates the dynamics. This evidence challenges IDM’s core assumptions and indicates that its deterministic nature limits its ability to accurately model real-world instability.
+
+\begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{Figure/IDM_Growth.png}
+        \caption{Simulation results (solid lines) of the standard deviation $\sigma_v$ of the time series of the velocity of each car of IDM from \cite{jiangTrafficExperimentRevealsNature2014}. The curves represent the simulation results while the markers such as circles represent the experimental results. The different colors represent different experiment runs in which the velocity of leading vehicle $v_l$ is 7,15,30,40 and 50 km/h.}
+        \label{fig:IDMGrowth}
+    \end{figure}
+
+\subsubsection{Spatiotemporal Patterns Division}
+
+Classic traffic theory forms the foundation by classifying traffic into free flow and congested flow, where congested flow encompasses a variety of spatiotemporal traffic patterns. Free flow is characterized by high vehicle speeds and low densities, with minimal interaction between vehicles. Congested flow, on the other hand, includes a range of traffic states such as stop-and-go waves, wide-moving jams, and localized clusters. IDM, through its nonlinear acceleration framework, can reproduce several distinct traffic patterns, including pinned localized clusters (PLC), moving localized clusters (MLC), triggered stop-and-go waves (TSG), oscillatory congested traffic (OCT), and homogeneous congested traffic (HCT) \citep{treiberThreephaseTrafficTheoryTwophase2010}. These patterns arise continuously, with smooth transitions between states, as shown in Fig.~\ref{fig:Twophase}. This flexibility and ability to model traffic instabilities have established IDM as a benchmark model for simulating traffic dynamics within the two-phase framework.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figure/IDMTP.png}
+    \caption{Dynamic phase diagram of on-ramp-induced congested traffic patterns simulated by IDM from \cite{treiberThreephaseTrafficTheoryTwophase2010}. The abbreviations denote free traffic (FT), pinned localized cluster (PLC), moving localized cluster (MLC), homogeneous congested traffic (HCT), oscillatory congested traffic (OCT), and triggered stop-and-go (TSG) pattern.}
+    \label{fig:Twophase}
+\end{figure}
+
+
+
+\section{Bibliometric analysis of IDM-related Research}
+\label{sec:bibliometric}
+This section provides a comprehensive bibliometric analysis of IDM-related research to evaluate its academic impact and development trends. Bibliometric methods are widely recognized for quantitatively assessing the influence of journals, researchers, and institutions, as well as identifying key research topics and collaborations. Using tools such as VOSviewer, we construct visual networks, including co-citation, co-authorship, and keyword co-occurrence, to uncover underlying research patterns. Additionally, metrics such as publication counts, total citations, and average citations per article are analyzed to highlight influential publications, authors, and journals within this domain.
+
+\subsection{Publication and citation structures}
+
+To build our bibliometric dataset, we utilized the Web of Science Core Collection. Unlike traditional keyword searches, our approach directly focuses on articles citing the seminal IDM work by \cite{treiberCongestedTrafficStatesEmpirical2000}. Given IDM’s high citation count of 2,786 (as of Dec. 2024), we established screening criteria to focus on the most relevant studies. First, we referred to a target journal list based on \cite{punzoCalibrationCarFollowingDynamicsAutomated2021}. Second,studies citing IDM only in literature reviews without substantial analysis or application were excluded. Both the bibliometric analysis in Section 2 and the literature review in Section 3 are derived from this carefully filtered dataset. Ultimately, this process resulted in a selection of 320 relevant papers, allowing us to provide a precise and exhaustive analysis of IDM's academic impact. Table \ref{tab:CFModel} indicates that since its introduction in 2000, the IDM has garnered 2,786 citations, averaging 111.44 citations per year (CPY). It ranks first in both total citations and CPY among classic car following models. Morever, compared to more general models of traffic flow, although IDM have not acquired highest citations, its CPY is alway rank first, see Table \ref{tab:trafficmodel}.
+
+{
+\begin{table}[H]
+\centering
+\caption{Citations of famous classic car following models included in the Web of Science Core Collection as of Dec. 2024. \cite{wiedemann1992microscopic} is not included in the web of science, so the citation is collected in google scholar database.  }
+\scriptsize
+\label{tab:CFModel}
+\begin{tblr}{
+  width = \linewidth,
+  colspec = {Q[56]Q[240]Q[306]Q[158]Q[110]Q[69]},
+    cells = {m},
+  cells = {c},
+  hline{1,12} = {-}{0.08em},
+  hline{2} = {-}{},
+    row{odd} = {gray9},   % 偶数行背景灰色，便于区分
+}
+Citations & Classic Models & Title & Publication Source & Citations  Per Year(CPY) & Rank by CPY\\
+2786 & {IDM \\\citep{treiberCongestedTrafficStatesEmpirical2000}} & Congested Traffic States in Empirical Observations and Microscopic Simulations & Physical Review E & 111.44 & 1\\
+2307 & {Optimal Velocity Model \\\citep{bandoDynamicalModelTrafficCongestion1995}} & Dynamical model of traffic congestion and numerical simulation & Physical Review E & 76.90 & 2\\
+1425 & {Gipps Model \\\citep{gippsBehaviouralCarfollowingModelComputer1981}} & A behavioural car-following model for computer simulation & Transportation Research Part B & 32.39 & 4\\
+1139 & {Full Velocity Difference Model \\\citep{bandoDynamicalModelTrafficCongestion1995}} & Full velocity difference model for a car-following theory & Physical Review E & 47.46 & 3\\
+957 & {GHR Model \\\citep{gazisNonlinearFollowLeaderModelsTraffic1961}} & Nonlinear follow-the-leader models of traffic flow & Operations Research & 14.95 & 6\\
+904 & {General Motor Model \\\citep{chandlerTrafficDynamicsStudiesCar1958}} & Traffic dynamics: studies in car following & Operations Research & 13.49 & 8\\
+902 & {Newell Nonlinear Model \\\citep{newellNonlinearEffectsDynamicsCar1961a}} & Nonlinear effects in the dynamics of car following & Operations Research & 14.09 & 7\\
+851 & {Pipes Model \\\citep{pipesOperationalAnalysisTrafficDynamics1953}} & An operational analysis of traffic dynamics & Journal of applied physics & 11.82 & 9\\
+609 & {Newell Simplified Model \\\citep{newellSimplifiedCarfollowingTheoryLower2002}} & A simplified car-following theory: a lower order model & Transportation Research Part B & 26.48 & 5\\
+349 & {Wiedemann Model\\\citep{wiedemann1992microscopic}} & Microscopic traffic simulation: the simulation system MISSION & Project ICARUS (V1052) Final Report & 10.58 & 10
+\end{tblr}
+\end{table}
+}
+
+{
+\begin{table}
+\centering
+\caption{Citations of famous models in transportation research field included in the Web of Science Core Collection as of Dec. 2024. }
+\scriptsize
+\label{tab:trafficmodel}
+\begin{tblr}{
+  width = \linewidth,
+  colspec = {Q[52]Q[198]Q[363]Q[158]Q[98]Q[62]},
+  cells = {m},
+  cells = {c},
+  hline{1-2,7} = {-}{},
+    row{odd} = {gray9},   % 偶数行背景灰色，便于区分
+}
+Citations & Classic Models & Title & Publication Source & Citations Per Year(CPY) & Rank by CPY\\
+2786 & {IDM \\\cite{treiberCongestedTrafficStatesEmpirical2000}} & Congested traffic states in empirical observations and microscopic  simulations & Physical Review E & 111.44 & 1\\
+3382 & {NaSch\\\cite{nagelCellularAutomatonModelFreeway1992a}} & A cellular automaton model for freeway traffic & Journal De Physique & 102.48 & 2\\
+2216 & {CTM\\\cite{daganzoCellTransmissionModelDynamic1994}} & The cell  transmission model-a dynamic representation of highway traffic consistent with the hydrodynamic theory & Transportation Research Part B & 71.48 & 3\\
+3231 & {LWR \\\cite{lighthillKinematicWavesIITheory1955}} & On kinematic waves  II. a theory of traffic flow on long crowded roads & Proceedings of the Royal Society of London & 46.16 & 4\\
+1519 & {Vickrey's bottleneck model\\\cite{vickreyCongestionTheoryTransportInvestment1969}} & Congestion theory and transport investment & American Economic Review & 27.13 & 5
+\end{tblr}
+\end{table}
+}
+
+Fig. \ref{fig:NumPaper} shows the distribution of papers published during 2000-2024 in the target journal and all journals. Blue bars represent publications in the target journal, while red bars represent those in all journals. Initially, from 2001 to 2009, there was minimal activity, with only a few papers published. However, from 2010 onwards, increasing attention led to a noticeable rise in publications. The period 2022-2024 saw a significant peak with 168 papers (53.8\%)  in the target journal and 808(39.3\%) across all journals. This trend indicates the growing importance and popularity of the research topic, which is expected to continue in the future.
+
+Table \ref{tab:TopJou} highlights the top 10 journals (out of 29) that have published more than four papers. Since some journal titles are too long, we defined abbreviations and used them in the rest of the article. These journals primarily fall within the "Transportation," "Economics," "Civil," and "Energy" categories according to the Journal Citation Reports (JCR) by Thomson Reuters. This indicates the broad application and development of IDM across diverse fields. IEEE Transactions on Intelligent Transportation Systems (IEEE-TITS) leads with 114 related papers, followed by Transportation Research Part C (TR-C) with 84 papers, underscoring IDM's significant application value in transportation technology. Notably, Transportation Research Part B (TR-B), renowned for its methodological innovations, features over 20 papers involving IDM research. Importantly, our statistics include papers that have at least applied IDM in simulations, rather than merely citing \cite{treiberCongestedTrafficStatesEmpirical2000}, which would result in a much higher count.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figure/NoP.png}
+    \caption{Number of relevant papers published during 2000-2024. Blue and red bars represent the relevant papers published in target journal list and in all journals in the web of science core collection, respectively.}
+    \label{fig:NumPaper}
+\end{figure}
+
+
+
+\begin{table}[htbp]
+\centering
+\caption{Top journals by the number of published related papers.}
+\scriptsize
+\label{tab:TopJou}
+\begin{tblr}{
+    cells = {m},
+  cells = {c},
+  hline{1-2,14} = {-}{},
+    row{odd} = {gray9},   % 偶数行背景灰色，便于区分
+}
+Rank & Journal & Abbreviations & Total number of relevant  papers\\
+1 & IEEE Transactions on Intelligent Transportation Systems & IEEE-TITS & 114\\
+2 & Transportation Research  Part C & TR-C & 84\\
+3 & IEEE Transactions on Vehicular Technology & IEEE-TVT & 25\\
+4 & Transportation Research Part B & TR-B & 23\\
+5 & Accident Analysis and Prevention & AAP & 14\\
+6 & IEEE Transactions on Intelligent Vehicles & IEEE-TIV & 12\\
+7 & Physica A & - & 8\\
+8 & Computer-Aided Civil and Infrastructure Engineering & CACIE & 6\\
+9 & Energy & - & 5\\
+9 & Physical Review E & PRE &5\\
+11 & Applied Energy & - & 4\\
+11 & Transportation Research Part D & TR-D & 4\\
+\end{tblr}
+\end{table}
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figure/Journal.png}
+    \caption{Bibilographic coupling of journals.}
+    \label{fig:BibJou}
+\end{figure}
+
+\subsection{Coupling Relationships among Resources}
+
+To analyze the coupling relationships among journals, we calculated the coupling strength between each pair of journals by normalizing the number of co-citations based on the number of publications in each journal in Fig. \ref{fig:BibJou}. The size of each circle represents the number of publications related to the topic within each journal. The lines between circles indicate the co-citation relationships. The thickness of the lines signifies the degree of co-citation intensity between journals. Specifically, thicker lines indicate a stronger co-citation relationship. It can be observed that papers in TR-C are frequently cited by those in IEEE-TITS, IEEE-TIV, and TR-B. Additionally, IEEE-ITS has strong citation connections with TR-C, AAP, and Applied Energy, highlighting a significant interdisciplinary impact.
+
+Table \ref{fig:TopPap} presents the top 50 most cited papers, each garnering at least 40 citations. Citation counts are based on the Scopus database, with rankings determined by total citations and average annual citations. Leading in total citations are papers by \cite{talebpourInfluenceConnectedAutonomousVehicles2016a}, \cite{milanesModelingCooperativeAutonomousAdaptive2014b}, and \cite{kestingAdaptiveCruiseControlDesign2008}, all published in TR-C. Notably, \cite{talebpourInfluenceConnectedAutonomousVehicles2016a} examined the impact of CAV on traffic flow stability, achieving the highest total citations at 880 and ranking first in average annual citations with 97.78. During the study period, 38 papers exceeded 200 citations, and 43 papers averaged more than 10 citations per year. Among the top 50 papers by total citations, 20 are from TR-C, 14 from IEEE-TITS, 4 from TR-B, and 3 from AAP and Physica A.
+
+{\scriptsize
+\begin{longtblr}[
+  label= fig:TopPap,
+  caption={The top 50 most cited papers.}
+]{ 
+  width = \linewidth,
+  colspec = {Q[50]Q[30]Q[90]Q[480]Q[75]Q[80]Q[50]},
+cells = {m},
+  cells = {c},
+  hline{1,52} = {-}{0.08em},
+  hline{2} = {-}{},
+  row{odd} = {gray9}
+}
+Rank by TC & TC & document & Title & Authors/ Year & Citations  Per Year(CPY)~ & Rank by CPY\\
+1 & 880 & TR-C & Influence of Connected and Autonomous Vehicles on Traffic Flow Stability  and Throughput & \cite{talebpourInfluenceConnectedAutonomousVehicles2016a} & 97.78 & 1\\
+2 & 690 & TR-C & Modeling Cooperative and Autonomous Adaptive Cruise Control Dynamic  Responses Using Experimental Data & \cite{milanesModelingCooperativeAutonomousAdaptive2014b} & 62.73 & 2\\
+3 & 419 & TR-C & Adaptive Cruise Control Design for Active Congestion Avoidance & \cite{kestingAdaptiveCruiseControlDesign2008} & 24.65 & 16\\
+4 & 375 & Physica A & Delays, Inaccuracies and Anticipation in Microscopic Traffic Models & \cite{treiber_delays_2006} & 19.74 & 32\\
+5 & 307 & TR-C & Modeling Car-Following Behavior on Urban Expressways in Shanghai: A  Naturalistic Driving Study & \cite{zhuModelingCarFollowingBehaviorUrban2018b} & 43.86 & 3\\
+6 & 306 & TR-C & Incorporating Human-Factors in Car-Following Models: A Review of Recent  Developments and Research Needs & \cite{saifuzzamanIncorporatingHumanFactorsCarFollowingModels2014} & 27.82 & 12\\
+7 & 238 & TR-C & Eco Approaching at an Isolated Signalized Intersection under Partially  Connected and Automated Vehicles Environment & \cite{jiangEcoApproachingIsolatedSignalized2017a} & 29.75 & 7\\
+8 & 231 & IEEE-TITS & Platooning with IVC-enabled autonomous vehicles: Strategies to mitigate  communication delays, improve safety and traffic flow & \cite{fernandes_platooning_2012} & 17.77 & 37\\
+9 & 214 & TR-C & Rolling Horizon Control Framework for Driver Assistance Systems. Part II:  Cooperative Sensing and Cooperative Control & \cite{wangRollingHorizonControlFramework2014b} & 19.45 & 33\\
+10 & 205 & TR-B & Trajectory Data Reconstruction and Simulation-Based Validation against  Macroscopic Traffic Patterns & \cite{montaninoTrajectoryDataReconstructionSimulationBased2015b} & 20.50 & 28\\
+11 & 203 & IEEE-TITS & Capturing car-following behaviors by deep learning & \cite{wang_capturing_2018} & 29.00 & 8\\
+12 & 203 & TR-C & Variable Speed Limit: A Microscopic Analysis in a Connected Vehicle  Environment & \cite{khondakerVariableSpeedLimitMicroscopic2015a} & 20.30 & 29\\
+13 & 202 & AAP & Longitudinal Safety Evaluation of Connected Vehicles' Platooning on  Expressways & \cite{rahman_longitudinal_2018} & 28.86 & 9\\
+14 & 200 & TR-C & A Recurrent Neural Network Based Microscopic Car Following Model to  Predict Traffic Oscillation & \cite{zhouRecurrentNeuralNetworkBased2017b} & 25.00 & 15\\
+15 & 196 & IEEE-TITS & On the impact of cooperative autonomous vehicles in improving  freeway merging: a modified IDM-based approach & \cite{zhou_impact_2017} & 24.50 & 17\\
+16 & 194 & TR-C & Isolated Intersection Control for Various Levels of Vehicle Technology:  Conventional, Connected, and Automated Vehicles & \cite{yangIsolatedIntersectionControlVarious2016a} & 21.56 & 26\\
+17 & 181 & IEEE-TITS & Development of an Efficient Driving Strategy for Connected and Automated  Vehicles at Signalized Intersections: A Reinforcement Learning Approach & \cite{zhou_development_2020} & 36.20 & 4\\
+18 & 181 & IEEE-TITS & Optimal control of connected vehicle systems with communication delay and  driver reaction time & \cite{ge_optimal_2017} & 22.63 & 21\\
+19 & 173 & IEEE-TITS & Analysis of recurrent neural networks for probabilistic modeling of  driver behavior & \cite{morton_analysis_2017} & 21.63 & 25\\
+20 & 171 & TR-C & Human-like Autonomous Car-Following Model with Deep Reinforcement  Learning & \cite{zhuHumanlikeAutonomousCarFollowingModel2018b} & 24.43 & 18\\
+21 & 166 & TR-C & Joint Optimization of Vehicle Trajectories and Intersection Controllers  with Connected Automated Vehicles: Combined Dynamic Programming and Shooting  Heuristic Approach & \cite{guoJointOptimizationVehicleTrajectories2019a} & 27.67 & 13\\
+22 & 163 & Applied Energy & Jointly Dampening Traffic Oscillations and Improving Energy Consumption  with Electric, Connected and Automated Vehicles: A Reinforcement Learning  Based Approach & \cite{qu_jointly_2020} & 32.60 & 5\\
+23 & 162 & TR-B & On Some Experimental Features of Car-Following Behavior and How to Model  Them & \cite{jiangExperimentalFeaturesCarFollowingBehavior2015b} & 16.20 & 38\\
+24 & 161 & AAP & Evaluation of the Impacts of Cooperative Adaptive Cruise Control on  Reducing Rear-End Collision Risks on Freeways & \cite{li_evaluating_2017} & 20.13 & 31\\
+25 & 155 & TR-C & Unravelling Effects of Cooperative Adaptive Cruise Control Deactivation  on Traffic Flow Characteristics at Merging Bottlenecks & \cite{xiaoUnravellingEffectsCooperativeAdaptive2018a} & 22.14 & 24\\
+26 & 153 & TR-C & Heterogeneity in Car-Following Behavior: Theory and Empirics & \cite{ossenHeterogeneityCarFollowingBehaviorTheory2011b} & 10.93 & 41\\
+27 & 152 & Plos One & Traffic experiment reveals the nature of car-following & \cite{jiangTrafficExperimentRevealsNature2014} & 13.82 & 39\\
+28 & 151 & AAP & Evaluating the Safety Impact of Adaptive Cruise Control in Traffic  Oscillations on Freeways & \cite{li_evaluating_2017} & 18.88 & 34\\
+29 & 150 & IEEE-TIV & Combining Planning and Deep Reinforcement Learning in Tactical Decision  Making for Autonomous Driving & \cite{hoel_combining_2020} & 30.00 & 6\\
+30 & 149 & TR-B & Three-Phase Traffic Theory and Two-Phase Models with a Fundamental  Diagram in the Light of Empirical Stylized Facts & \cite{treiberThreephaseTrafficTheoryTwophase2010} & 9.93 & 42\\
+31 & 145 & IEEE-TITS & Heterogeneous traffic mixing regular and connected vehicles: Modeling and  stabilization & \cite{xie_heterogeneous_2019} & 24.17 & 19\\
+32 & 142 & CACIE & How Reaction Time, Update Time, and Adaptation Time Influence the  Stability of Traffic Flow & \cite{kesting_how_2008} & 8.35 & 47\\
+33 & 139 & IEEE-TITS & A decentralized approach for anticipatory vehicle routing using delegate  multiagent systems & \cite{claes_decentralized_2011} & 9.93 & 43\\
+34 & 122 & PRE & Understanding widely scattered traffic flows, the capacity drop, and  platoons as effects of variance-driven time gaps & \cite{treiberUnderstandingWidelyScatteredTraffic2006} & 6.42 & 48\\
+35 & 121 & TR-C & Simultaneous Modeling of Car-Following and Lane-Changing Behaviors Using  Deep Learning & \cite{zhangSimultaneousModelingCarFollowingLaneChanging2019c} & 20.17 & 30\\
+36 & 116 & TR-C & Integrated Macroscopic Traffic Flow, Emission, and Fuel Consumption Model  for Control Purposes & \cite{zegeyeIntegratedMacroscopicTrafficFlow2013b} & 9.67 & 44\\
+37 & 115 & TR-C & A Survey on Autonomous Vehicle Control in the Era of Mixed-Autonomy: From  Physics-Based to AI-guided Driving Policy Learning & \cite{di_survey_2021} & 28.75 & 10\\
+38 & 115 & Physica A & Linear Stability Analysis of Heterogeneous Traffic Flow Considering  Degradations of Connected Automated Vehicles and Reaction Time & \cite{yao_linear_2021} & 28.75 & 11\\
+39 & 113 & PRE & Memory effects in microscopic traffic models and wide scattering in  flow-density data & \cite{treiberMemoryEffectsMicroscopicTraffic2003} & 5.14 & 50\\
+40 & 113 & IEEE-TITS & Cooperative Eco-Driving at Signalized Intersections in a Partially  Connected and Automated Vehicle Environment & \cite{wang_cooperative_2020} & 22.60 & 22\\
+41 & 95 & TR-D & Eco-Driving-Based Cooperative Adaptive Cruise Control of Connected  Vehicles Platoon at Signalized Intersections & \cite{maEcoDrivingBasedCooperativeAdaptiveCruise2021a} & 23.75 & 20\\
+42 & 92 & IEEE-TITS & Do we really need to calibrate all the parameters? Variance-based  sensitivity analysis to simplify microscopic traffic flow models & \cite{punzo_we_2015} & 9.20 & 45\\
+43 & 90 & TR-C & Modeling and Analyzing Cyberattack Effects on Connected Automated  Vehicular Platoons & \cite{wang_modeling_2020} & 18.00 & 35\\
+44 & 89 & TR-C & Analytical Analysis of the Effect of Maximum Platoon Size of Connected  and Automated Vehicles & \cite{zhou_analytical_2021} & 22.25 & 23\\
+45 & 89 & IEEE-TITS & Cooperative Lane Changing Strategies to Improve Traffic Operation and  Safety Nearby Freeway Off-Ramps in a Connected and Automated Vehicles  Environment & \cite{zheng_cooperative_2020} & 17.80 & 36\\
+46 & 87 & TR-B & Revisiting the Task-Capability Interface Model for  Incorporating Human Factors into Car-Following Models & \cite{saifuzzamanRevisitingTaskCapabilityInterfaceModel2015a} & 8.70 & 46\\
+47 & 85 & Energy & Fuel Consumption and Transportation  Emissions Evaluation of Mixed Traffic Flow with Connected Automated Vehicles  and Human-Driven Vehicles on Expressway & \cite{yao_fuel_2021} & 21.25 & 27\\
+48 & 85 & IEEE-TITS & Cooperative intersection control based on virtual platooning & \cite{medina_cooperative_2018} & 12.14 & 40\\
+49 & 83 & IEEE-TITS & On the impact of virtual traffic lights on carbon emissions mitigation & \cite{ferreira_impact_2012} & 6.38 & 49\\
+50 & 81 & IEEE-TITS & Driving Behavior Modeling Using Naturalistic Human Driving Data with  Inverse Reinforcement Learning & \cite{huang_driving_2022} & 27.00 & 14
+\end{longtblr}}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Top eight countries by the number of relevant papers.}
+\scriptsize
+\label{tab:TopCou}
+\begin{tblr}{
+    cells = {m},
+  cells = {c},
+  hline{1-2,11} = {-}{},
+    row{odd} = {gray9},   % 偶数行背景灰色，便于区分
+}
+Rank & Country & Total number of relevant  papers \\
+1 & China (including mainland China, Hong Kong, Taiwan and Macau) & 159\\
+2 & USA & 110\\
+3 & Australia & 28\\
+4 & Germany & 23\\
+5 & England & 17\\
+5 & Netherlands & 17\\
+6 & Italy & 16\\
+7 & Sweden & 11\\
+8 & Canada & 10
+\end{tblr}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figure/Country.png}
+    \caption{Bibilographic coupling of countries.  Each color represents a specific cluster of nodes that have strong relationships.}
+    \label{fig:BibCou}
+\end{figure}
+
+Figure \ref{fig:BibCou} depicts the collaboration network among 37 countries. Each solid circle represents a country, with its size indicating the number of papers published. The connecting lines represent co-citations, with thickness reflecting the strength of these relationships. Table \ref{tab:TopCou} lists the eight countries that published more than 10 papers. China accounts for nearly half of the total publications (159 out of 320), with the United States also contributing over 100 papers. These two countries significantly exceed others in output. Papers from China and the United States are frequently cited by authors from Germany, Australia, Italy, the Netherlands, and England.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{Figure/Author.png}
+    \caption{Bibilographic coupling of authors. Each color represents a specific cluster of nodes that have strong relationships.}
+    \label{fig:BibAu}
+\end{figure}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Top 28 leading authors with number of papers $\geq$ 5. TP and TC represent the total number of publications and citations, respectively.}
+\scriptsize
+\begin{tblr}{
+  width = \linewidth,
+  colspec = {Q[100]Q[100]Q[300]Q[45]Q[45]Q[70]Q[120]},
+    cells = {m},
+  cells = {c},
+  hline{1,30} = {-}{0.08em},
+  hline{2} = {-}{},
+    row{odd} = {gray9},   % 偶数行背景灰色，便于区分
+}
+Rank by TP & Author & Institute and country & TP & TC & TC/TP & Rank by TC/TP\\
+1 & Jiang R. & Beijing Jiaotong University, China & 17 & 882 & 51.88 & 19\\
+2 &Treiber M. & Dresden University of Technology,
+  Germany & 14 & 1277 & 91.21 & 4  \\
+3 &  Zheng Z. & University of Queensland, Australia & 13 & 832 & 64.00 & 14\\
+4 & Sun J. & Tongji University, China & 12 & 302 & 25.17 & 24\\
+5 & Ran B. & University of Wisconsin Madison, USA & 10 & 302 & 30.20 & 22\\
+6 & Jia B. & Beijing Jiaotong University, China & 9 & 597 & 66.33 & 12\\
+7 & Wang H. & Southeast University, China & 8 & 562 & 70.25 & 9\\
+8 & Wang W. & Southeast University, China & 8 & 553 & 69.13 & 11\\
+9 & Li Y. & Central South University, China & 8 & 472 & 59.00 & 16\\
+10 & Van arem B. & Delft University of Technology,
+  Netherlands & 7 & 485 & 69.29 & 10\\
+11 & Xing L. & Southeast University, China & 7 & 449 & 64.14 & 13\\
+12 & Li X. & University of Wisconsin Madison, USA & 7 & 403 & 57.57 & 17\\
+13 & Kesting A. & Dresden University of Technology,
+  Germany & 6 & 889 & 148.17 & 2\\
+14 & Montanino M. & University of Naples Federico II,
+  Italy & 6 & 513 & 85.50 & 6\\
+15 & Punzo V. & University
+  of Naples Federico II, Italy & 6 & 513 & 85.50 & 7\\
+16 & Gao Z. & Beijing Jiaotong University, China & 6 & 506 & 84.33 & 8\\
+17 & Kochenderfer M.J. & Stanford University, USA & 6 & 381 & 63.50 & 15\\
+18 & Tian J. & Tianjin University, China & 6 & 258 & 43.00 & 21\\
+19 & Stern R. & University of Minnesota, USA & 6 & 90 & 15.00 & 26\\
+20 & Qu X. & Tsinghua University, China & 5 & 741 & 148.20 & 1\\
+21 & Wang M. & Delft University of Technology,
+  Netherlands & 5 & 646 & 129.20 & 3\\
+22 & Zhang H.M. & University of California Davis, USA & 5 & 440 & 88.00 & 5\\
+23 & Bhaskar A. & Queensland University of Technology,
+  Australia & 5 & 279 & 55.80 & 18\\
+24 & Ciuffo B. & European Commission Joint Research
+  Centre, Italy & 5 & 229 & 45.80 & 20\\
+25 & Shi H. & University of Wisconsin Madison, USA & 5 & 139 & 27.80 & 23\\
+26 & Shang M. & University of Minnesota, USA & 5 & 114 & 22.80 & 25\\
+27 & Tian Y. & Tongji University, China & 5 & 63 & 12.60 & 27\\
+28 & Wang S. & University of Minnesota, USA & 5 & 61 & 12.20 & 28
+\end{tblr}
+\label{tab:TopAu}
+\end{table}
+
+
+Figure \ref{fig:BibAu} shows the bibliographic coupling network of authors, which can help understand the co-citation relationship between authors in IDM-related research fields. The solid circle represents an author, and its size represents the number of papers published by the author. The lines between authors represent the co-citations of authors, and the thickness of the lines represents the corresponding co-citation strength. As many as 856 authors appear in these papers. The network was built using the full count method, with the minimum number of authors set to 3, and the number of authors that met the threshold was 70. In terms of the total number of relevant publications, authors such as Jiang R., Treiber M. , Zheng Z. and Sun J.  are the most influential because they are associated with the big circle. Table \ref{tab:TopAu} highlights the top 28 leading authors, each with at least five publications, detailing their total number of publications, citations, and average citations per paper. The table also specifies the authors' affiliated institutions and countries. Jiang R. tops the list with 17 publications, followed by Zheng Z. and Treiber M. with 13 and 12 publications respectively. Nine authors have published more than eight papers. Kesting A., Van Arem B., and Qu X. are among the top five most influential authors in terms of average citations per paper. Treiber M. leads in total citations with 1118, while Qu X. has the highest average citations per paper at 148.20. Another notable author with a high citation average is Kesting A., with 148.17 citations per paper.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figure/Key.png}
+    \caption{Bibilographic coupling of keywords. Each color represents a specific cluster of nodes that have strong relationships.}
+    \label{fig:BibKey}
+\end{figure}
+
+Fig. \ref{fig:BibKey} illustrates the bibliographic coupling network of keywords, aiding in identifying research hot-spots in IDM related studies. The size of each solid circle indicates the frequency of a keyword, while the thickness of the connecting lines reflects the co-occurrence between keywords. A total of 1,285 keywords, including both author and index keywords, were analyzed. Using the full-counting method and setting a minimum threshold of 10 papers per keyword, 57 keywords met the criteria. Prominent terms include "autonomous vehicles," "adaptive cruise control," "model," "simulation," "safety," "stability," "reinforcement learning," "optimization," "traffic flow," "vehicle dynamics," "car-following model," "connected vehicles," "validation," "design," "trajectory," "algorithm," and "eco driving."
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=1\linewidth]{Figure/Review.png}
+%     \caption{Classification of IDM-related literature.}
+%     \label{fig:review}
+% \end{figure}
+
+\section{Critical Discussion of the IDM and Its Extensions}
+\label{sec:limitations}
+The bibliometric analysis in the previous section provides a comprehensive overview of IDM’s academic impact and identifies key studies that have shaped its development. By synthesizing insights from these core contributions, several critical limitations of IDM have been highlighted. These include its inability to fully capture stochastic variability, driver heterogeneity, and real-time adaptability, which are essential for modeling complex traffic behaviors in real-world scenarios. Addressing these limitations has become a focal point of research, driving the development of diverse extensions to enhance IDM’s functionality and applicability.
+
+Broadly, these extensions can be categorized into three main directions. First, \textbf{physics-based extensions} focus on refining IDM by incorporating additional behavioral or physical principles to better capture human-vehicle interactions. These efforts include both \textit{deterministic approaches}, which improve the model’s core mechanisms, and \textit{stochastic approaches}, which introduce randomness to represent driver variability. Second, \textbf{physics-data-driven hybrid extensions} integrate IDM’s interpretability with the flexibility and adaptability of machine learning and statistical techniques, enabling the model to perform effectively in data-rich and complex traffic environments. Lastly, \textbf{comparative studies with other car-following models} evaluate IDM’s strengths and weaknesses, offering valuable insights into its positioning within the broader landscape of car-following research.
+
+The following sections systematically review these extensions. We begin with physics-based models, discussing both deterministic and stochastic approaches, followed by hybrid methodologies that combine physical and data-driven techniques. Finally, we examine comparative studies, highlighting their role in contextualizing IDM and its extensions in the broader car-following research domain.
+
+\begin{table}
+\centering
+\caption{Summary of IDM Extensions, Features, and Use Cases}
+\scriptsize
+\label{tab:IDM_extensions}
+\begin{tblr}{
+  width = \linewidth,
+  colspec = {Q[150]Q[160]Q[350]},
+    cells = {m},
+  hline{1,10} = {-}{0.08em},
+hline{2} = {-}{},
+  row{odd} = {gray9},   % 偶数行背景灰色，便于区分
+}
+\textbf{Model} & \textbf{Improvements / Features} & \textbf{Use Cases} \\ 
+IDM & - & Basis for realistic models; calibration reference; testing V2V/V2I communication; benchmark for AI models; physics-informed ML; traffic simulation \\
+IDM+ / IIDM & Steady-state time-gap parameter $T$ & Same use cases as IDM with a triangular fundamental diagram \\
+IDM-ACC & Reduces sensitivity to cut-ins/lane changes; includes jerk control & Adaptive cruise control; longitudinal control for autonomous vehicles (validated on test tracks/public roads) \\
+IDMM (IDM with Memory) & Considers adaptation to traffic state & Models observed traffic flow dynamics \\
+Stochastic IDM Variants (e.g., HDM, 2D-IDM, Action-Point IDM, etc.) & Stochasticity, action points, noise, random parameters & Reproduce platoon experiments (e.g., concave growth) \\
+Dynamic Time-Gap IDM Variants (e.g., 2D-IDM, Variance-Driven IDM) & Risk allostasis, task difficulty homeostasis, indifference region & Describe naturalistic data and platooning experiments \\
+Reaction Time IDM Variants (e.g., HDM, Multi-Anticipative IDM) & Reaction time, estimation errors, multi-anticipation & Realistic modeling of human drivers \\
+IDM-Based Lane-Changing Model (MOBIL) & Lane-changing behavior while preserving driver traits & Scenarios with lane changes \\
+\end{tblr}
+\end{table}
+
+\subsection{Limitations of IDM}
+
+Despite its simplicity and computational efficiency, IDM exhibits several critical limitations that hinder its ability to fully capture the complexity of real-world traffic systems. These limitations primarily stem from its deterministic nature, oversimplified behavioral assumptions, and lack of flexibility in addressing diverse traffic scenarios. Key issues include:
+
+\begin{itemize}
+    \item \textbf{Omission of Human Factors:} IDM does not explicitly incorporate essential human driving characteristics, such as reaction time, estimation errors, and multi-vehicle anticipation. This omission weakens its ability to reproduce realistic driver behavior and traffic stability, particularly under stop-and-go wave conditions.
+
+    \item \textbf{Deterministic Nature:} IDM's deterministic framework fails to reflect the inherent stochastic variability and heterogeneity in driver behavior, limiting its applicability in scenarios characterized by high uncertainty and variability.
+
+    \item \textbf{Inaccurate Oscillation Dynamics:} The model predicts convex growth patterns in traffic oscillations, which contradict empirical evidence showing concave growth. This discrepancy reduces its effectiveness in modeling traffic flow instabilities.
+
+    \item \textbf{Steady-State Gap and Deceleration Issues:} IDM often produces unrealistic equilibrium gaps and exaggerated deceleration behaviors, particularly at high speeds or during lane changes. This leads to inefficiencies in traffic flow and unrealistic braking patterns.
+
+    \item \textbf{Over-Simplified Assumptions in Complex Scenarios:} IDM's simplified structure limits its ability to model complex scenarios such as merging, lane-changing, and obstacle avoidance, resulting in behaviors that deviate from real-world observations.
+
+    \item \textbf{Limited Adaptability to Modern Traffic Systems:} With its lack of mechanisms for cooperative driving or information-sharing, IDM is less effective in modeling connected and autonomous vehicle (CAV) interactions, as well as mixed traffic environments.
+\end{itemize}
+
+These shortcomings underscore the need for advancing IDM through methodical refinements and extensions. Various extended models have been proposed to address these issues by incorporating features such as stochastic variability, human behavioral factors, and enhanced adaptability for modern intelligent transportation systems. Table~\ref{tab:IDM_extensions} provides an overview of these IDM extensions, summarizing their addressed limitations and application scenarios.
+
+To further illustrate the advancements in IDM, the following sections will delve into its extensions from two key perspectives: deterministic and stochastic models. Deterministic extensions primarily focus on enhancing the baseline IDM by addressing specific weaknesses, such as reaction time and equilibrium gap issues, while maintaining its computational efficiency. Stochastic extensions, on the other hand, incorporate randomness and human behavioral variability, enabling more realistic modeling in complex and uncertain traffic environments. Together, these extensions represent significant strides in improving IDM's robustness and applicability across a wide range of traffic scenarios.
+
+
+
+
+\subsection{Physics-Based Extensions of IDM}
+
+The development of IDM extensions for modeling driver behavior has seen significant advancements, which can be broadly categorized into the \textbf{deterministic IDM family} and \textbf{stochastic IDM family}. Given the rising focus on automated driving, a dedicated subsection is introduced to specifically address \textbf{IDM extensions tailored for automated driving} . Moreover, we also highlight their role in overcoming IDM's limitations and enhancing applicability in this rapidly growing field.
+
+\subsubsection{Deterministic IDM Extensions}
+
+Deterministic extensions of IDM focus on addressing specific limitations, such as reaction time, equilibrium gaps, and oscillation dynamics, through modifications grounded in physical principles. As summarized in Table~\ref{tab:IDM_extensions}, these extensions include models like IDM+, which resolves the misalignment of the time-gap parameter with steady-state conditions, and IDMM (IDM with memory), which incorporates driver adaptation to traffic states.
+
+For example, \cite{treiber_delays_2006} highlighted the importance of incorporating reaction time and human factors into IDM. While IDM does not explicitly model reaction delays, estimation errors, or multi-vehicle anticipation, these elements have been introduced in extensions such as the \textbf{Human Driver Model (HDM)}. HDM stabilizes traffic flow by increasing oscillation wavelength and reducing the gradient of stop-and-go waves, better aligning with empirical observations. Similarly, \cite{kestingAdaptiveCruiseControlDesign2008} extended IDM for simulating adaptive cruise control systems, creating the \textbf{IDM-ACC}, which captures smoother and more stable driving patterns characteristic of ACC-equipped vehicles. Studies such as \cite{li_evaluation_2017,li_evaluating_2017} demonstrated IDM-ACC's ability to evaluate the impact of CACC systems on highway safety and efficiency, showing its robust applicability in automated driving. Despite differences in model components, HDM and IDM-ACC often produce similar patterns due to their shared foundation in IDM's "intelligent braking strategy" (see subsections 2.1.2 and 2.2.1).
+
+Other deterministic extensions further refine IDM to address specific weaknesses. For instance, \textbf{Improved IDM (I-IDM)} proposed by \cite{treiberTrafficFlowDynamics2013} eliminates exaggerated deceleration at speeds exceeding the desired speed $v_0$, ensuring equilibrium gaps align with empirical observations. \textbf{Sigmoid-IDM} \citep{chen_sigmoid-based_2024} incorporates a sigmoid function to better handle traffic oscillations, while \textbf{Task-Difficulty IDM (TD-IDM)} \citep{saifuzzamanIncorporatingHumanFactorsCarFollowingModels2014} accounts for task-difficulty considerations to model human factors in heterogeneous environments.
+
+\subsubsection{Stochastic IDM Extensions}
+
+Stochastic IDM extensions aim to address the deterministic nature of the original IDM by introducing variability to better represent random driver behavior, heterogeneity, and traffic uncertainties. These models enhance IDM's realism and applicability in scenarios involving traffic instabilities, mixed traffic environments, and connected driving. As summarized in Table \ref{tab:IDM_extensions}, stochastic extensions such as 2D-IDM, Action-Point IDM, and other variants effectively capture phenomena like concave oscillation growth and driver heterogeneity.
+
+\cite{jiangTrafficExperimentRevealsNature2014} introduced the two-dimensional IDM (2D-IDM), which revealed the concave growth pattern of traffic oscillations through time-varying headway analysis. Building on this, \cite{xiong_speed_2022} utilized 2D-IDM to establish a dynamic programming model for recommended speed at isolated signalized intersections in connected environments, characterizing random human driving behavior. Further advancements were made by \cite{tianImproved2DIntelligentDriver2016}, who proposed the Improved 2D-IDM (I2D-IDM). This model successfully simulated synchronized flow and traffic oscillations by incorporating defensive driving behavior at high speeds, thus improving realism in high-speed scenarios.
+
+To address traffic oscillations, \cite{treiberIntelligentDriverModelStochasticity2018} introduced IDM with white noise and IDM with action points, showing that even basic stochastic elements can effectively reproduce observed fluctuation patterns. Similarly, \cite{tianRoleSpeedAdaptationSpacing2019} proposed the Stochastic Speed Adaptation Model (SSAM), which is utilizing the function formulation of desired spacing of IDM (see Equation (2)) and captures critical traffic instability characteristics such as speed adaptation and spacing indifference. By doing so, SSAM successfully reproduces the concave growth patterns observed in empirical data.
+
+Other stochastic extensions have focused on modeling inter-driver and intra-driver variability. For instance, \cite{lindorfer_modeling_2018} presented the Enhanced HDM, which incorporates stochastic Wiener processes to model driving errors, variable reaction times, and driver distractions. \cite{zhangGenerativeCarFollowingModelConditioned2022c} proposed a time-varying IDM that emphasizes both inter-driver and intra-driver heterogeneity, enhancing the model's ability to simulate real-world variability in human driving behavior.
+
+\subsubsection{IDM Extensions Tailored for Automated Driving}
+
+In addition to the characterization of driving behavior, IDM has also been extended to various aspects of autonomous driving modeling, such as obstacle avoidance, vehicle merging, ecological driving, network attacks, and information error modeling. \cite{sharath_enhanced_2020} proposed AV-IDM for two-dimensional motion planning, specifically in mixed traffic scenarios involving obstacle avoidance in which the surrounding obstacles like vehicles and road boundaries are treated as stimuli. \cite{chen_safety_2024} developed a model focusing on freeway merging areas, redefining the desired safety distance in IDM to enhance safety during merging under AV environments. \cite{ward_probabilistic_2017} proposed a probabilistic extension of IDM for AVs, incorporating normal distribution noise to improve interaction-aware planning in merge scenarios. \cite{zhou_impact_2017} introduced the Multi-AV cooperative (MA-C) IDM, integrating cooperative components to assess freeway merging under various AV ratios. \cite{zhou_cooperative_2023} introduced the EIDM for cooperative control in mixed traffic, combining multiple vehicle state information to mitigate the negative impacts of HVs. As to eco-driving of AV, \cite{dongFlexibleEcoCruisingStrategyConnected2024a} proposed a Flexible Eco-Cruising Strategy  for CAVs, employing a hierarchical control framework to optimize driving lane planning and speed, thus reducing driving costs in various traffic conditions. When addressing cybersecurity and information errors,\cite{wang_modeling_2020} developed the CIDM to model CAV behavior under cyberattacks, utilizing dynamic communication topologies to analyze the impact of manipulated information.  \cite{berkhahn_traffic_2022} introduced IDMrm, incorporating random misperception (rm) into IDM to model traffic dynamics at intersections with potential perception errors. \cite{li_unraveling_2024}presented the Dynamic Cooperative IDM (DC-IDM), addressing information errors and their impact on CAVs. \cite{liu_connected_2022} proposed a microscopic model for mixed traffic flow unsignalized intersections for autonomous driving, which incorporates the Ornstein–Uhlenbeck process into IDM to model the random perception errors of vehicles at intersections. \cite{luo_modeling_2024} proposed the VC-IDM, integrating a generalized force model to analyze platoon behavior and defense mechanisms under cyberattack scenarios.
+
+\textbf{Summary}: The IDM and its extensions owe much of their success to the foundational "intelligent braking strategy," which ensures collision-free behavior when physically possible \cite{treiberTrafficFlowDynamics2013}. This feature not only enhances IDM's safety and robustness but also serves as the unifying principle across all deterministic and stochastic variants, making IDM a reliable and versatil eframework for both research and practical applications. In deterministic extensions, models like IDM-ACC and HDM refine IDM's ability to reproduce empirical traffic dynamics, improve stability, and adapt to automated driving scenarios. Meanwhile, stochastic extensions, such as 2D-IDM and SSAM, introduce variability to better capture real-world phenomena like driver heterogeneity, traffic oscillations, and random behavior, thereby enhancing IDM's realism in diverse traffic conditions.
+
+Despite its strengths, IDM's deterministic nature limits its ability to fully replicate the complexity of human driving behavior, particularly the inherent randomness and adaptability of drivers in dynamic traffic environments. This limitation becomes especially pronounced in scenarios involving traffic instabilities or stop-and-go waves, where stochastic elements play a critical role in capturing variability and unpredictability.
+
+In conclusion, IDM remains a robust and widely applicable car-following model, particularly for automated driving systems where safety and deterministic behavior are paramount. However, to further expand its applicability to human-driven vehicles (HVs), future research should prioritize the integration of stochastic elements and context-specific behavioral adaptations, enabling IDM to better address the variability and complexity of real-world traffic dynamics.
+
+\subsection{Hybrid Physics and Data-Driven Extensions}
+
+Hybrid physical and data-driven extensions aim to overcome the limitations of both classical and data-driven models. Classical models, such as IDM, accurately represent traffic mechanisms but rely on strong assumptions and struggle with data uncertainties. On the other hand, data-driven methods, while flexible and adaptive, depend heavily on high-quality data and often lack interpretability. By combining these approaches, hybrid models offer a robust framework that balances adaptability with clarity. Typically, the main approach to extend IDM in data-driven vehicle-following modeling is to combine IDM with reinforcement learning (RL) methods and deep learning or machine learning techniques.
+
+\subsubsection{Reinforcement Learning-Based Models}: Reinforcement learning (RL)-based extensions of IDM aim to improve decision-making and vehicle control by integrating data-driven adaptability with IDM’s physically interpretable structure. For instance, \cite{brito_learning_2022} extended IDM using deep reinforcement learning to predict and identify leading vehicles, estimate motion plans, compute control commands (e.g., acceleration), and optimize trajectories in dense traffic, thereby enhancing safety and feasibility. Similarly, \cite{caoTrustworthySafetyImprovementAutonomous2022a} developed a decision framework for RL, incorporating IDM as a lower performance bound, where autonomous vehicles (AVs) only adopt RL policies if they outperform IDM. 
+
+Additionally, \cite{baiLongitudinalControlAutomatedVehicles2024a} combined Twin Delayed Deep Deterministic Policy Gradient (TD3)-based RL with IDM to achieve improved longitudinal control, safety, and efficiency. \cite{kerbel_shared_2024} incorporated IDM’s expected acceleration as a state variable in shared learning to enhance fleet-wide fuel economy and adaptability. Furthermore, \cite{hartRobustCarfollowingBasedDeep2024} proposed an RL model with reward functions grounded in IDM’s assumptions, using parameters such as the desired time gap, maximum and comfortable accelerations/decelerations, and desired speed to guide learning.
+
+\subsubsection{Machine and Deep Learning-Based Models}
+
+The integration of IDM with machine learning (ML) and deep learning (DL) methods has enabled advanced modeling of vehicle behavior by blending data-driven insights with the established physical frameworks of IDM. For example, \cite{chen_investigating_2020} developed an LSTD-IDM model that combines long-term and short-term driving characteristics by merging IDM with longitudinal driving data. \cite{moPhysicsInformedDeepLearningParadigm2021c} proposed a physics-informed deep learning framework (PIDL-CF), blending IDM with deep learning to predict driver acceleration under various conditions.
+
+Hybrid models have also extended IDM with probabilistic and transformer-based approaches. \cite{bhattacharyya_hybrid_2022} introduced a hybrid particle-filtering method combined with collaborative IDM extensions. \cite{gengPhysicsInformedTransformerModelVehicle2023b} presented the Transformer-IDM (PIT-IDM) for enhanced vehicle trajectory prediction by integrating IDM with deep learning techniques. Similarly, \cite{kangTrajectoryBasedEmbeddingRandomCoefficients2023b} proposed PGM-IDM, combining trajectory-based embeddings with probabilistic graphical models to improve vehicle-following responses. 
+
+Further advancements include \cite{liuQuantileRegressionPhysicsInformedDeepLearning2023c}, which introduced QRPIDL-CF, fusing quantile regression and deep learning with IDM’s physical insights. \cite{tang_grounded_2024} proposed a grounded relational reasoning approach that incorporates IDM’s expected distance into the reward function of a Markov decision process, while \cite{zhang_bayesian_2024} developed a memory-augmented Bayesian calibration (MA-IDM) to address parameter uncertainties and behavioral differences in IDM, significantly enhancing its predictive accuracy.
+
+\textbf{Summary}: The development of hybrid IDM extensions represents a promising direction in vehicle-following modeling, successfully combining the interpretability of physics-based models with the adaptability of data-driven methods. These approaches improve IDM’s capability to handle complex traffic scenarios, such as dense traffic, heterogeneous driver behavior, and uncertain data inputs. By enhancing IDM with reinforcement learning, hybrid models can dynamically adapt to changing traffic conditions, while deep learning integration enables the modeling of nuanced driver behaviors.
+
+However, hybrid approaches also face several challenges. First, the reliance on high-quality and diverse data for training remains a significant limitation, as the absence of representative data may lead to poor generalization. Second, while combining physical and data-driven models enhances interpretability compared to purely data-driven methods, hybrid models still risk losing physical consistency due to the black-box nature of machine learning components. Finally, the computational cost of training and deploying hybrid models can be prohibitively high, particularly for real-time applications in autonomous driving. 
+
+Overall, while hybrid IDM extensions provide a powerful toolkit for addressing the limitations of traditional and data-driven models, future work must focus on balancing interpretability, computational efficiency, and data requirements to ensure their practical applicability.
+
+\subsection{Comparisons with Other Models}
+
+\subsubsection{Deterministic Model Comparisons}
+
+Many studies have compared their proposed models with IDM, but relatively few have conducted comprehensive and unified evaluations that fairly compare all models, including IDM. One such study is \cite{punzoCalibrationCarFollowingDynamicsAutomated2021}, where deterministic models, including IDM, Gipps' model, and the full velocity difference model (FVDM) with constant-time headway (CTH) and SIGMOID spacing policies, were systematically evaluated across multiple datasets and calibration settings. IDM demonstrated strong and consistent calibration performance, achieving low errors in speed and acceleration while performing well in spacing accuracy. Although Gipps' model slightly outperformed IDM in reproducing spacing for both human-driven and autonomous vehicle datasets, IDM maintained a more balanced performance across all three measures: spacing, speed, and acceleration. The robustness of IDM across diverse datasets and calibration settings, especially when using Pareto-efficient objective functions such as NRMSE(s,v,a), underscores its versatility as a reliable model for car-following dynamics.
+
+\subsubsection{Challenges in Comparing with Stochastic Models}
+
+While comparisons between deterministic models are well-established, IDM and stochastic models are often compared qualitatively rather than quantitatively. This is because stochastic models inherently produce non-unique outputs, and their calibration processes are complex, involving additional randomness and parameter variability. These factors make direct comparisons with deterministic models like IDM challenging and often unfair. Additionally, the absence of a unified framework for calibrating stochastic models and comparing them with deterministic models hinders systematic evaluation. Such a framework is crucial for enabling fair and consistent comparisons, helping to elucidate the advantages and limitations of stochastic models relative to deterministic counterparts like IDM.
+
+\textbf{Summary}: While IDM has proven to be a versatile and robust model across various datasets and scenarios, its limitations—such as the lack of stochastic variability, over-simplification of human factors, and challenges in adapting to cooperative driving—necessitate further refinement. Comparisons with deterministic models highlight IDM’s balanced performance across key metrics, but its deterministic nature limits its applicability in more variable scenarios. Comparisons with stochastic models remain a significant challenge due to the absence of a standardized evaluation framework. Future research should prioritize developing such frameworks to enable fair and systematic comparisons, thereby advancing the understanding of both deterministic and stochastic car-following models.
+
+\section{Applications of IDM}
+\label{sec:applications}
+This section provides a structured review of the applications of IDM in traffic research and related domains. The review is organized into five thematic areas: traffic stability analysis, calibration frameworks, traffic bottleneck management and control, section and network-level optimization, and interdisciplinary applications. While certain studies may overlap across these themes, each is assigned to the category that best represents its primary focus to ensure clarity and coherence.
+
+The review begins by exploring IDM's role in traffic stability analysis, focusing on its use in understanding reaction-based instabilities, string stability, and mixed traffic dynamics. Next, the discussion shifts to calibration frameworks, where IDM has been employed to address challenges in parameter estimation, error modeling, and behavioral feature extraction. Applications in bottleneck management, such as intersections and ramp merging, are then highlighted, with IDM widely used to model vehicle interactions under cooperative and signal optimization scenarios. The section further extends to road segment and network-level studies, where IDM is leveraged for evaluating traffic capacity, stability, and emissions under connected and autonomous vehicle (CAV) environments. Finally, the review touches on IDM's interdisciplinary applications, such as its use in vehicular communication systems and civil engineering for infrastructure load modeling, showcasing its versatility beyond traditional traffic modeling domains.
+
+\subsection{Applications in Traffic Stability Analysis}
+
+A significant focus has been on understanding traffic stability through IDM. \cite{kestingHowReactionTimeUpdate2008} initiated this exploration by analyzing the influence of reaction time and speed adaptation on traffic stability, using IDM to uncover various instability mechanisms. Building on this, \cite{jinEquivalenceContinuumCarFollowingModels2016a} demonstrated the equivalence between continuum and car-following models, illustrating that higher-order IDM can be transformed into continuous models with consistent stability conditions. \cite{monteil_linear_2014} advanced the discussion by examining string stability in mixed traffic flows and the impact of multiple anticipations in cooperative car-following models. \cite{montaninoHomogeneousHeterogeneousTrafficFlows2021b} further delved into string stability in mixed and heterogeneous traffic flows, incorporating uncertainties in model parameters. They later proposed a unified modeling framework \citep{montaninoStringStabilityMixedHeterogeneous2021b} to assess stability, considering driver and vehicle heterogeneity and using IDM to verify this framework. \cite{bouadiStochasticFactorsStringStability2022b} extended these concepts into the realm of stochastic models, investigating string stability in stochastic car-following models using IDM with stochastic variants and the generalized Lyapunov equation to establish stability conditions.
+
+\textbf{Summary}: IDM has served as a foundational tool for probing traffic stability, facilitating analytical insights from reaction-based instabilities to string stability in heterogeneous and stochastic contexts. Yet, much of this literature remains confined to linearized scenarios, externally imposed uncertainties, and idealized driver behaviors, limiting its explanatory power in real-world complexity. As traffic systems grow increasingly interconnected and adaptive, future research must re-situate IDM within hybrid, data-informed architectures that move beyond string stability toward capturing emergent, nonlinear, and multi-agent dynamics.
+
+
+\subsection{Applications in Calibration Framework}
+
+Research on IDM-based calibration can be categorized into several key areas. Firstly, the development of calibration frameworks focuses on effectively handling Model Performance (MoP), Goodness of Fit (GoF), and trajectory completeness. Secondly, model evaluation involves calibrating various car-following models to compare their performance across different metrics. Thirdly, algorithm design aims to create efficient optimization algorithms for calibration processes. Lastly, behavior feature extraction uses IDM-calibrated data to classify different driving behaviors and vehicle types. 
+
+For the development of calibration frameworks, building on this focus on error, \cite{jin_reducing_2014} explored error accumulation in car-following models calibrated with vehicle trajectory data, deriving a dynamic error model based on acceleration. \cite{longBiScaleCarFollowingModelCalibration2024a} introduced a bi-scale car-following model calibration using corridor-level trajectories, highlighting macro measurement error accumulation. To address the validation aspect, \cite{treiberValidationTrafficFlowModels2012} developed a quantitative method for calibrating and validating traffic flow models based on the spatiotemporal evolution of congested traffic patterns. In terms of parameter importance and simplification, \cite{punzo_we_2015} conducted sensitivity analysis on driving behavior models, finding leader trajectory more important than parameters, and proposed a simplified model with faster convergence. For setting robust calibration objectives, \cite{punzoCalibrationCarFollowingDynamicsAutomated2021} proposed robust guidelines for selecting MoP and GoF for calibrating car-following dynamics using Pareto efficiency and indifference curves for function comparison. Focusing on data integrity, \cite{sharmaMoreAlwaysBetterImpact2019b} investigated the impact of vehicular trajectory completeness on the calibration and validation of car-following models. Finally, addressing behavioral pattern recognition, \cite{zhengMultiObjectiveCalibrationFrameworkCapturing2023b} proposed a multi-objective calibration framework to capture behavioral patterns of autonomously-driven vehicles, validating with empirical observations of ACC vehicle dynamics. \cite{zhouCalibrationStochasticCarFollowing2025a} established the calibration framework of stochastic CF models and reveals the essential differences between deterministic and stochastic CF model calibration using various stochastic IDM variants.
+
+As for the development of the optimization algorithms for calibration, \cite{rahman_improving_2015} proposed a stochastic calibration method using Bayesian estimation and MCMC simulation. \cite{liGlobalOptimizationAlgorithmTrajectory2016b} developed a global optimization algorithm combining direct and gradient searches for car-following models. \cite{zhongCrossEntropyMethodProbabilisticSensitivity2016b} introduced a calibration method using the Cross-Entropy Method and sensitivity analysis under noisy data. \cite{fardCopulaBasedEstimationDistributionAlgorithm2019b} suggested a copula-based algorithm to explore complex parameter interactions in traffic models. \cite{wangIntegratedSelfConsistentMacroMicroTraffic2024a} created an integrated macro-micro calibration framework using enhanced optimization and deep learning.
+
+In addition to the above theme, calibration is crucial for model evaluation. \cite{zhuModelingCarFollowingBehaviorUrban2018b} investigated the applicability of car-following models for Chinese drivers, highlighting IDM's effectiveness and portability on Shanghai highways. \cite{campi_roundabouts_2024} assessed various models in roundabout scenarios, with IDM excelling in capturing CAV behavior. \cite{zhouExperimentalFeaturesEmissionsFuel2023b} used four classical emission and fuel consumption models and found IDM effective at the vehicle pair level for energy consumption and emissions predictions. However, at the platoon level, predicted results were almost constant, contrasting with experimental observations.
+
+Based on calibrated IDM, different behavior patterns and vehicle types can be extracted. \cite{ossenHeterogeneityCarFollowingBehaviorTheory2011b} used data collected by helicopter to calibrate the IDM to identify differences in following behaviors between different driver types, showing significant heterogeneity. \cite{makridis_response_2020} estimated the response time of vehicles equipped with ACC by calibrating IDM parameters and found that it was comparable to that of human drivers. \cite{hu_autonomous_2023} calibrated IDM parameters to distinguish the empirical following behaviors of AVs and HVs in Waymo data. \cite{li_automated_2023} proposed an AV identification algorithm based on IDM calibration results, that is, using error results to distinguish AVs from HVs.
+
+\textbf{Summary}: IDM has played a pivotal role in the development of calibration frameworks, supporting advances in model performance metrics, optimization algorithms, and behavioral feature extraction. From error modeling to cross-scenario validation, IDM has been widely applied due to its analytical tractability and interpretability. However, most calibration efforts still focus on deterministic model variants, while the calibration of stochastic IDM-family models remains notably underdeveloped due to challenges in parameter identifiability, noise disentanglement, and the lack of robust likelihood functions \cite{punzoCalibrationCarFollowingDynamicsAutomated2021}. This limits their empirical applicability despite their theoretical promise. Moving forward, calibration should be re-conceptualized not merely as parameter fitting but as a behavioral inference task, requiring methods that can accommodate uncertainty, heterogeneity, and model adaptivity across varying traffic regimes.
+
+
+\subsection{Applications in Traffic Bottleneck Management and Control}
+
+Next, we will focus on two typical bottlenecks, intersections and ramps, and summarize the IDM-related research in the field of traffic bottlenecks from the aspects of intersection system evaluation, vehicle trajectory planning and signal optimization, and ramp merging management.
+
+\subsubsection{Intersection Systems}
+
+Intersection research mainly includes evaluation of the intersection system, vehicle trajectory planning and signal optimization research, as well as the coordinated optimization research of the two. \cite{joererVehicularNetworkingPerspectiveEstimating2014a} introduced a method to evaluate vehicle collision probability at intersections, using modified traffic simulators based on IDM to assess intelligent transportation system safety, especially when traffic rules are disregarded. \cite{schrader_global_2024} employed Sobol global sensitivity analysis to identify how simulation input parameters like IDM's parameter impact performance metrics of the intersection system. For vehicle trajectory planning related research, IDM is mainly used as a simulation model for background vehicles or manually driven vehicles \citep{chen_human-like_2023,dong_comparative_2022,ghosh_traffic_2022,guoCoordinationConnectedAutomatedVehicles2023a,jiangEcoApproachingIsolatedSignalized2017a,medina_cooperative_2018,stebbinsCharacterisingGreenLightOptimal2017a,wang_learning_2023,xiaoDecisionMakingAutonomousVehiclesRandom2024a,zhangPlatoonCenteredControlEcoDrivingSignalized2023b,zhang_risk-aware_2023}.In addition,\cite{zhouCooperativeSignalFreeIntersectionControl2022b} used IDM as the microscopic simulation model for CAV under the corporative intersection control framework. For the signal optimization, IDM is also used as the simulation foundation \citep{cao_gain_2022,sohn_waterfilling_2023,yang_enhancing_2024}. \cite{duCoupledVehicleSignalControlMethod2021b} developed an efficient coupled vehicle signal control method for optimizing traffic signal timing and CAV trajectories in mixed traffic environments, using IDM as the artificially driven vehicle model. \cite{huang_reservation-based_2023} proposed a reservation-based cooperative ecological driving model for optimizing CAV trajectories and intersection signals at isolated intersections, using background vehicles simulated by IDM. \cite{liEcoDrivingSystemElectricVehicles2018a} integrated an electric vehicle eco-driving system and signal control in a V2X environment, using IDM to formulate non-connected electric vehicle following rules and a hybrid algorithm for optimization. \cite{liang_equitable_2020} combined connected vehicle technology for traffic signal control at isolated intersections, optimizing platoon dissipation based on IDM estimation of vehicle proximity.
+
+\subsubsection{Ramp Merging}
+
+For ramp scenarios, the main focus is on research related to collaborative merging. \cite{baselt_merging_2014,chen_deep_2023,hou_cooperative_2023,ito_coordination_2019,maProgressiveVirtualRiskBasedVehicle2024a,tangNovelHierarchicalCooperativeMerging2022b,xiongManagingMergingCAVLane2022b,zhou_state-constrained_2019} proposed various corporative merging methods by using IDM to simulate a HV in a mixed traffic merging scenario. \cite{guNetworkTrafficInstabilityAutomated2022b} use macroscopic or network fundamental diagrams  to study the impact of CAVs on network flow destabilization caused by turning and merging maneuvers. They used IDM, HDM and cooperative IDM to simulate the AV, HV and CAV, respectively. \cite{silgu_combined_2022}  proposed a controller integrating ramp metering and variable speed limits for freeway traffic, tested via SUMO simulations with CACC and HVs.  For the system evaluation of ramp, \cite{xiaoUnravellingEffectsCooperativeAdaptive2018a} analyzed the impact of CACC deactivation on traffic flow at merging bottlenecks, using simulations to evaluate capacity and queue discharge rates.
+
+\textbf{Summary}: IDM has become a foundational simulation tool in bottleneck management, enabling evaluations of intersection safety, signal control strategies, and ramp merging coordination in mixed traffic. Its integration into intersection studies supports both trajectory planning and cooperative signal optimization, while in ramp scenarios, IDM facilitates the modeling of human-driven vehicles in increasingly complex CAV-HV interactions. However, most applications treat IDM as a passive background model rather than an active behavioral hypothesis, often sidestepping the calibration and validation of IDM under high-interaction, high-uncertainty conditions. Particularly in cooperative merging and signal-free intersection control, the use of IDM-family models lacks rigorous behavioral grounding or stochastic robustness. Future work should re-express IDM in these contexts not merely as a simulation agent, but as a control-informed, behaviorally adaptive module, with a stronger emphasis on empirical validation, uncertainty modeling, and multi-agent coordination under real-world constraints.
+
+
+\subsection{Applications in Section and Network Control}
+
+Among the research related to the direct application of IDM, the vehicle control especially under the connected and autonomous environment is most popular. We divide these literature into four types: individual longitudinal control (car following),
+Individual lateral control (lane change), integration of individual lateral and longitudinal coordinated control.
+
+\subsubsection{Vehicle Longitudinal and Lateral control}
+
+In individual longitudinal control, scholars tend to design the control algorithm of the automatic vehicle based on physical methods or data-driven methods. Therefore, IDM is still used as a vehicle control model for background vehicles, ACC vehicles, manually driven vehicles or some low-connectivity scenarios \citep{juPredictiveCruiseControllerElectric2023a,kamal_efficient_2016,kamalLookAheadDrivingSchemesEfficient2022a,li_deep_2022,li_effect_2015,liu_semantic_2023,liu_potential_2023,liuSpatiotemporalTrajectoryPlanningAutonomous2024a,luLearningDriverSpecificBehaviorOvertaking2018a,ma_energetic_2022,maPersonalizedDrivingBehaviorsFuel2022a,manolis_real_2020,shiConnectedAutomatedVehicleCooperative2021b,shiDeepReinforcementLearningBased2023b,suo_model-free_2024,tangHighwayDecisionMakingMotionPlanning2022a,tas_making_2018,toghi_social_2022,valiente_prediction-aware_2024,wegener_automated_2021,wuFlowModularLearningFramework2022a,wu_hybrid_2023,yan_unified_2023,yangIsolatedIntersectionControlVarious2016a,yuAssessmentDynamicPlatoonInformation2023a,yuanPredictiveEnergyManagementStrategy2019,zhang_stackelberg_2024,zhangNoMoreRoadBullying2023a,zhou_development_2020,milanesModelingCooperativeAutonomousAdaptive2014b,fernandes_platooning_2012,vivekCyberphysicalRisksHackedInternetconnected2019a}. Among these, \cite{zhangNoMoreRoadBullying2023a} and \cite{manolis_real_2020} integrated the IDM into the simulation software VISSIM and AIMSUN, respectively.
+
+Compared with longitudinal control, there are relatively few studies on lateral control, and IDM is generally used as a longitudinal control model to study how to perceive, cooperate, make decisions, and adjust in lane change decisions base on the methodologies of game theory, model predictive control, reinforcement learning and etc. like \citep{chen_adversarial_2022,gongGameTheoryBasedDecisionMakingIterative2023a,guIntegratedEcoDrivingAutomationIntelligent2022a,hwang_autonomous_2022,li_bounded_2024,liuMultistepCooperativeLaneChange2024a,liu_interaction-aware_2023,scheel_recurrent_2022,sheng_cooperation-aware_2023,sunberg_improving_2022,wangModelingBoundedRationalityDiscretionary2022a,zhang_game_2020}.
+
+For the individual lateral and longitudinal coordinated control, research usually integrate two types of models into one unified framework \citep{kanagaraj_self-driven_2018,li_developing_2023,mullakkal-babu_hybrid_2021}.
+
+\subsubsection{Evaluation of CAV Systems on Road section}
+
+In the road section scale, many research focus on evaluate the performance of the CAV systems. For example,several research evaluate the stability and the capacity of this system \citep{qin_analytical_2021,qinStabilityAnalysisConnectedVehicles2023a,sunStabilityExtensionCarFollowingModel2023b,sunRelationshipCarFollowingString2020b,shang_impacts_2021,talebpourEffectInformationAvailabilityStability2018a,talebpourInfluenceConnectedAutonomousVehicles2016a,wang_stability_2019,yao_linear_2021,zhou_analytical_2021}. \cite{alhariqiImpactVehicleArrangementMixed2023a,zhou_modeling_2020} evaluated the impact of different following arrangements in a platoon on the road emissions. \cite{mullakkal-babu_comparative_2022} evaluated the adverse impact of takeover behavior on mixed traffic flow at different takeover time levels for fully automated vehicles. \cite{rahman_longitudinal_2018} explored the impact of CV platooning on highways on longitudinal traffic safety at different market penetration rates, and studied the role of the allocation of CV (i.e., whether they are limited to specific lanes) on traffic safety. \cite{wangEgoEfficientLaneChangesConnected2022a} studied the impact of lane change on the sytem. \cite{wuTimeDependentPerformanceAnalysis80211pBased2020a} investigated the impact of disturbances caused by acceleration and deceleration of the lead vehicle, gusts, and uncertainties in the platoon control system, such as aerodynamic drag and rolling resistance torque, on platoon communication.
+\cite{yao_fuel_2021} studied the impact of CAVs on fuel consumption and emissions of mixed highway traffic flows. \cite{yaoAnalysisImpactMaximumPlatoon2023a} explored the impact of the maximum size of an autonomous platoon on mixed traffic flows. \cite{zhou_impact_2021} studied
+the impact of degradation of CAV platooning control modes on the fundamental diagram. Autonomous driving car testing is an important part of autonomous driving research and development, and IDM also plays an important role in this as the background vehicle \citep{sun_scenario-based_2022,li_scegene_2022,sun_adaptive_2022,cao_autonomous_2023,zhang_accelerated_2024,zhang_bayesian_2024}. 
+
+\subsubsection{Traffic optimization of road section and network}
+
+Furthermore, some system management research on the road section and network have been conducted. Some tried to improve the traffic capacity of road section based on platoon control.  Most of them use IDM for simulating the HV like \cite{ferreira_impact_2012,ge_optimal_2017,heEcoDrivingAdvisoryStrategiesPlatoon2018a,liu_joint_2022,montaninoTrajectoryDataReconstructionSimulationBased2015b,wangRollingHorizonControlFramework2014b,wang_optimal_2022,wang_trajectory_2022}, while other platoon control related research always use IDM as the degradation model of CAV. Some use the VSL to optimize the CAV system in which IDM is used to simulate HV or CAV \citep{khondakerVariableSpeedLimitMicroscopic2015a,li_developing_2022,li_integrated_2017,luTD3LVSLLaneLevelVariableSpeed2023a,othman_analysis_2022}. \cite{mahajan_improving_2024,schakel_improving_2014} proposed a speed-based lane guidance system and a new on-board advisory system, respectively, to provide recommendations on lanes, vehicle speeds, and headway, optimizing lane allocation under high-traffic conditions to reduce capacity degradation. \cite{wang_cooperative_2020} studied a cooperative ecological driving system for signal corridors, where the CAV switches between a leading vehicle and a following vehicle, and IDM is used to simulate a CAV with network communication failure.
+
+On the road network scale, various scenarios are simulated with IDM as the underlying model. \cite{huang_characterizing_2023} considered different signal control schemes and demand loading patterns, and focused on the overall network level to consider the traffic flow patterns brought about by autonomous driving mixed traffic. \cite{claes_decentralized_2011} proposed a distributed vehicle path planning method based on predictive information.
+
+\textbf{Summary}: IDM serves as a foundational component in section and network-level traffic control, frequently used to model human-driven or fallback behaviors in studies of CAV longitudinal-lateral coordination, platoon dynamics, and system-wide optimization. Its integration into mixed traffic simulations underpins evaluations of capacity, stability, safety, and energy consumption across both microscopic and macroscopic scales. However, IDM is often treated as a static behavioral proxy, lacking dynamic adaptation or calibration across diverse control regimes. This simplification becomes especially problematic when IDM is used to simulate degraded CAV behavior or background vehicles in reinforcement learning and game-theoretic frameworks. Moreover, the model’s deterministic structure limits its ability to capture emergent behaviors in stochastic, high-density environments. Future research should reposition IDM not only as a benchmarking tool but as an adaptive module within learning-based, uncertainty-aware, and multi-agent control systems, capable of reflecting the evolving interplay between autonomy, connectivity, and human variability across networked infrastructures.
+
+\subsection{Interdisciplinary Applications}
+
+ IDM is widely recognized for its versatility across numerous research domains beyond its core application in traffic modeling and management of road segments and networks. IDM finds extensive use in areas such as vehicle self-organizing networks, communication algorithms and their associated network attacks within vehicular communications, and even in civil engineering for studies related to bridge loads.
+
+\subsubsection{Applications in vehicle communications}
+
+In terms of in-vehicle networks, IDM is used as a fundamental model for vehicle operation. \cite{wangOptimalFeedbackControlLaw2023a} and \cite{wang_analytical_2024} have significantly advanced the understanding of cyberattacks on automated vehicles by developing an optimal feedback control law and a comprehensive framework for modeling attacks on adaptive cruise control vehicles. \cite{dongDynamicManagerSelectionAssisted2022a} introduced a resource allocation algorithm for 5G-V2X platoons, optimizing communication performance under finite block length constraints, crucial for ensuring ultra-reliable low-latency communications. \cite{jiaDisturbanceAdaptiveDesignVANETenabledVehicle2014a} and \cite{jiaNetworkConnectivityPlatoonBasedVehicular2014a} delved into VANET-enabled platoon architectures, emphasizing disturbance adaptation and network connectivity, which are vital for effective safety message transmission under varying system parameters. Moreover,  \cite{segataAutomaticEmergencyBrakingRealistic2013a} assessed the integration of automatic emergency braking systems within VANETs, while \cite{tianSelfOrganizedRelaySelectionCooperative2017a} proposed a decentralized relay selection algorithm based on non-cooperative game theory to enhance cooperative dynamics. 
+
+\subsubsection{Applications in civil engineering}
+
+\cite{ge_intelligent_2022} introduced an advanced traffic flow load monitoring system that integrates machine vision and weigh-in-motion  systems, leveraging deep learning for precise vehicle detection and extraction of key parameters for traffic flow load simulation.  \cite{zhou_hybrid_2024} proposed a two-step Hybrid Virtual-Real Traffic Simulation method to replicate the spatiotemporal distribution of bridge loads, demonstrating the broad applicability of IDM in various interdisciplinary fields.
+
+\textbf{Summary}: The adaptability of IDM has enabled its interdisciplinary expansion beyond classical traffic modeling into domains such as vehicular communications, network security, and civil infrastructure assessment. In vehicular networks, IDM supports the evaluation of cyber-physical threats, communication reliability, and cooperative control under V2X and VANET architectures, often serving as the behavioral backbone in simulations of control feedback and message propagation. In civil engineering, IDM-driven traffic simulations are increasingly used to estimate dynamic load effects on infrastructure, bridging traffic theory with structural analysis. Yet, these applications often inherit the behavioral simplifications of the base model, overlooking the contextual nuances of driver behavior under cyber disruptions or infrastructural constraints. To unlock its full interdisciplinary potential, future work should integrate IDM into co-simulation platforms with tighter behavioral-physical coupling, enabling high-fidelity, domain-specific extensions that reflect not only vehicle dynamics but also information flow, structural feedback, and adversarial interactions.
+
+
+
+
+\section{Future research directions}
+\label{sec:future}
+Based on the literature review and the analysis of limitations in previous research, several significant gaps and new opportunities for future studies can be identified, as outlined below.
+
+\subsection{Combination of Big Data}
+
+Current IDM research faces several limitations. Despite the widespread use of open-source datasets like the NGSIM, Naples data set \citep{punzoAnalysisComparisonMicroscopicTraffic2005}, Hefei data set \citep{jiangExperimentalFeaturesCarfollowingBehavior2015}, and the HighD data set \citep{krajewskiHighDDatasetDroneDataset2018}, data scarcity remains a significant challenge, affecting both empirical and experimental data acquisition. The limited availability and scope of these datasets make it difficult to extract universal behavioral or macro-level characteristics. Additionally, insufficient data volume constrains model validation and refinement. This situation not only hampers the development of mechanism-driven models like IDM but also limits the effective training of data-driven models, such as those based on machine learning and deep learning. Issues of data quality and diversity are also prominent, as existing datasets may lack representation of specific traffic conditions or regions. Furthermore, inadequate data collection frequency and precision hinder the ability to capture dynamic traffic changes.
+
+The integration of big data into IDM research can significantly address current limitations through both empirical and experimental data approaches. Empirical data, gathered from traffic monitoring systems, floating car data, and intelligent infrastructure, offers a vast and dynamic dataset. This abundance of data provides a robust foundation for testing and validating models across diverse scenarios. By leveraging these large-scale datasets, IDM can be further refined and integrated with machine learning and deep learning techniques, enhancing traffic prediction capabilities. This integration allows for more accurate and adaptive models that can efficiently respond to real-time traffic conditions. On the experimental data front, the advantages are equally compelling. Conducting controlled traffic experiments enables researchers to delve deeper into the mechanisms of driver behavior and traffic flow. Experimental data provides the opportunity to isolate and study specific variables, minimizing interference and uncovering fundamental characteristics and mechanisms \citep{tianCarFollowingDynamicsExperiments2023}. This detailed insight is crucial for guiding model development and improving theoretical frameworks. By bridging micro-level decision-making processes with macro-level traffic phenomena, experimental data facilitates a comprehensive understanding of traffic dynamics. This approach not only enriches the theoretical foundation of IDM but also supports the development of models that are both innovative and aligned with real-world complexities.
+
+\subsection{Hybrid Modelling Methodology}
+
+Hybrid modeling, which combines data-driven and mechanism-driven approaches, offers significant advantages over purely mechanistic or data-driven models. It leverages the strengths of both methodologies: the adaptability and pattern recognition capabilities of data-driven models, and the theoretical rigor and interpretability of mechanism-driven models like \citep{yuanMacroscopicTrafficFlowModeling2021,yuanModelingStochasticMicroscopicTraffic2020}. This synergy can lead to more robust and versatile traffic models, capable of addressing complex, real-world scenarios. However, the integration process faces several limitations.
+
+Firstly, the integration often lacks seamless fusion, resulting in limited adaptability and flexibility in practical applications. Secondly, data-driven models and mechanism-driven models often have different underlying structures and assumptions, which makes combining them smoothly a challenge. This can lead to a lack of cohesion in the hybrid model, where components operate in isolation rather than in a unified manner. Additionally, the calibration and tuning processes for each model type can be complex and may not align well, resulting in inefficiencies or conflicts in parameter settings.  Additionally, hybrid models can exhibit inconsistent performance across different traffic scenarios, particularly in data-scarce or anomalous situations, affecting their robustness.Moreover, the lack of standardized metrics can lead to unfair comparisons and inconsistent assessments just as \cite{wangComparingHundredsMachineLearning2024} pointed.  Furthermore, The challenge of integrating heterogeneous data sources persists, as effectively combining different data types to enhance model performance remains complex. Lastly, computational complexity and real-time applicability are significant constraints; integrated models may demand substantial computational resources, hindering their use in real-time traffic management. Addressing these challenges requires developing more flexible integration frameworks and efficient algorithms to support the advancement and application of IDM models.
+
+
+\subsection{Emerging Technologies}
+
+The integration of autonomous driving and V2X technology presents both opportunities and challenges for IDM development. While many studies have explored these technologies, the models developed are often scenario-specific and lack broad applicability. Additionally, there is inconsistency in how vehicle behaviors are defined; IDM is used to simulate HV in some cases, ACC vehicles in others, and even CAV, see Section 3.3. This inconsistency can lead to confusion and limit the effectiveness of simulations. Therefore, there is a pressing need for a universal microscopic behavior model in intelligent connected environments, akin to IDM, that can accurately simulate a variety of vehicle types and support diverse traffic scenarios. Such a model would facilitate more efficient traffic management and optimization in highly interconnected systems.
+
+Digital twin technology offers significant benefits for IDM development by creating high-fidelity digital replicas of real-world traffic systems. This approach allows for the rapid and cost-effective collection of extensive data, which is crucial for model development and training, enhancing the accuracy and robustness of IDM. Digital twins enable the simulation of diverse traffic scenarios, providing a platform for rigorous model testing and optimization. Additionally, they support system-wide optimization by identifying and addressing potential traffic bottlenecks and safety issues. Thus, digital twin technology provides essential support for IDM innovation and application, driving advancements in intelligent transportation systems.
+
+\subsection{Human-Machine Interaction Integration}
+
+The integration of IDM with Human-Machine Interaction (HMI) represents a promising direction for advancing both driver behavior modeling and intelligent transportation systems. As semi-autonomous and autonomous vehicles become more prevalent, the interaction between human drivers and automated systems introduces new challenges and opportunities for IDM development. Traditional IDM focuses on simulating car-following behaviors based on deterministic or stochastic rules, yet it often overlooks the dynamic and context-sensitive nature of human decision-making in shared control scenarios. For instance, transitions between manual and automated driving modes, driver reactions to system suggestions, and trust in automation are critical factors that influence vehicle behavior.
+
+Future research should aim to extend IDM by incorporating cognitive and psychological models of driver behavior, enabling more accurate simulation of these interactions. This may involve integrating real-time data from physiological sensors (e.g., eye-tracking, heart rate monitors) and external HMI systems (e.g., dashboards, alerts) to adjust IDM parameters dynamically based on the driver's state. Furthermore, HMI-integrated IDM can play a pivotal role in designing adaptive interfaces that balance automation and human control, ensuring smooth transitions and reducing driver workload. By capturing the interplay between human decisions and automated systems, such models would not only enhance the realism of traffic simulations but also contribute to safer and more efficient vehicle systems in complex driving environments.
+
+\section{Conclusions and Discussion}
+\label{sec:conclusion}
+This paper presents a comprehensive review of research related to IDM over the past twenty-five years. Drawing on bibliometric analysis of 875 publications from the Web of Science Core Collection, we identified 320 studies that directly engage with IDM simulation and application. These studies were systematically categorized into four thematic areas: foundational reviews of the basic IDM, theoretical developments, practical implementations, and model extensions. Our analysis highlights key contributors, influential papers, and evolving research trends, offering a structured map of the academic landscape surrounding IDM. More importantly, this review surfaces critical gaps and emerging opportunities that point to the future trajectory of IDM research in an increasingly data-driven and automated mobility context.
+
+After a quarter-century of development, IDM has become a cornerstone of microscopic traffic flow modeling. Its conceptual elegance, physical interpretability, and computational efficiency have made it a widely adopted framework in both academic inquiry and practical applications, including traffic simulations, driver assistance systems, and autonomous vehicle control. However, its very ubiquity has also contributed to a certain inertia in the field—dampening critical engagement with its underlying assumptions and limiting the exploration of alternative modeling paradigms. This paper does not aim to offer an uncritical celebration of IDM, but rather seeks to reframe the discourse: to acknowledge its foundational value, while emphasizing the need to re-express and re-engineer the model in light of new technological, behavioral, and methodological demands.
+
+Our analysis reveals that while IDM remains powerful, it is fundamentally incomplete. The model is grounded in a mechanical and rationalist view of driving behavior, which, while effective in controlled scenarios, does not fully capture the complexity of modern traffic systems. As real-world traffic becomes increasingly heterogeneous, stochastic, and influenced by algorithmic decision-making, IDM’s limitations become more apparent. Its deterministic nature, limited treatment of human variability, and unrealistic responses under certain traffic conditions—particularly during congestion or at high speeds—suggest that IDM, in its current form, is misaligned with the realities of contemporary mobility ecosystems.
+
+Thus, we contend that the future of IDM lies not in preserving it as a fixed standard, but in redefining it as a platform for innovation. IDM should no longer be seen as a monolithic solution, but as a modular and extensible framework—one that can be systematically expanded with stochastic elements, integrated with human behavioral insights, and enhanced through hybrid modeling that combines physics-based structure with data-driven learning. Promising directions include the development of context-specific extensions tailored to autonomous vehicles, cooperative driving systems, and eco-driving applications. In this light, IDM’s role should evolve from being a standalone model to becoming an interpretable backbone within a broader ecosystem of intelligent transportation modeling tools—serving not just as a simulation engine, but as a conceptual foundation for next-generation traffic systems.
+
+Furthermore, our review identifies a pressing methodological gap: the absence of standardized, rigorous frameworks for evaluating and comparing car-following models across deterministic and stochastic paradigms. Without such benchmarks, IDM’s continued dominance may reflect historical momentum rather than actual superiority. Advancing traffic flow theory requires not only more sophisticated models, but also a clearer understanding of what constitutes model robustness, generalizability, and practical utility under diverse real-world conditions.
+
+Ultimately, this paper does not seek to close the chapter on IDM, but to open a more critical and generative conversation about its future. We hope to shift the perspective from viewing IDM as a fixed modeling artifact to engaging with it as a living theory-in-practice, one that must adapt to meet the demands of intelligent, connected, and increasingly unpredictable traffic environments. IDM’s legacy is not just as a model that captured the past, but as a lens through which we must now reimagine what car-following modeling can and should become.
+
+In this sense, IDM is not the end of a modeling journey—it is the beginning of a new phase of theoretical exploration and methodological innovation.
+
+
+
+\section{Acknowledgments}
+% 72222021 田老师优青
+% 72010107004 马老师国际合作
+% 72288101 高老师基础科学中心
+% W2411064 姜老师国际合作
+This work is supported by the National Natural Science Foundation of China (Grant No. 72222021, W2411064, 72288101, 71931002), Young Scientific and Technological Talents (Level One) in Tianjin (Grant No. QN20230104) and Beijing-Tianjin-Hebei Basic Research Cooperation Project (Grant No. G2024210009). 
+
+
+\section*{Appendix}
+
+Table \ref{tab:target_journals} is a list of target journals included in the literature review. We have combined the list of \cite{punzoCalibrationCarFollowingDynamicsAutomated2021} and related engineering research community are considered to represent the state of the art in the field.
+\begin{table}[!h]
+\centering
+\scriptsize
+\caption{Target Journals Included in the Literature Review.}
+\label{tab:target_journals}
+\begin{tblr}{
+width = 0.7\linewidth,
+hline{1,6} = {-}{0.08em}, % 表头和底部分隔线加粗
+hline{2-5} = {-}{}, % 普通分隔线
+row{odd} = {gray9}, % 奇数行背景设置为灰色
+colspec = {Q[180]Q[350]}, % 调整列宽比例，使内容适应新的总宽度
+cells = {m}, % 单元格垂直居中对齐
+}
+\textbf{Category} & \textbf{Journal Name} \\ 
+\textbf{Transportation Science and Engineering} & 
+Transportation Research Part B: Methodological \newline
+Transportation Research Part C: Emerging Technologies \newline
+Transportation Research Part D: Transport and Environment \newline
+Transportation Research Part E: Logistics and Transportation Review \newline
+Transportation Research Part F: Traffic Psychology and Behaviour \newline
+Accident Analysis and Prevention \newline
+Transportmetrica A: Transport Science \newline
+Transportmetrica B: Transport Dynamics \\ 
+\textbf{Electrical and Computer Engineering} & 
+IEEE Transactions on Intelligent Transportation Systems \newline
+IEEE Transactions on Intelligent Vehicles \newline
+IEEE Transactions on Vehicular Technology \newline
+IEEE Transactions on Automation Science and Engineering \newline
+IEEE Transactions on Robotics \newline
+IEEE Transactions on Transportation Electrification \newline
+Vehicular Communications \\ 
+\textbf{Energy and Environment} & 
+Applied Energy \newline
+Energy \\ 
+\textbf{Physics and Interdisciplinary Studies} & 
+Physical Review E \newline
+Physica A: Statistical Mechanics and Its Applications \newline
+Plos One \\ 
+\end{tblr}
+\end{table}
+
+
+
+% \clearpage 
+%% Loading bibliography style file
+%\bibliographystyle{model1-num-names}
+\bibliographystyle{cas-model2-names}
+
+% Loading bibliography database
+\bibliography{Ref20241025}
+
+% Biography
+\bio{}
+% Here goes the biography details. 
+\endbio
+% To print the credit authorship contribution details
+\printcredits
+\end{document}
+
+
+

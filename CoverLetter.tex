@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{stix} % Use the Charter font
+
+\usepackage[
+	a4paper, % Paper size
+	top=1in, % Top margin
+	bottom=1in, % Bottom margin
+	left=1in, % Left margin
+	right=1in, % Right margin
+	%showframe % Uncomment to show frames around the margins for debugging purposes
+]{geometry}
+
+\setlength{\parindent}{0pt} % Paragraph indentation
+\setlength{\parskip}{1em} % Vertical space between paragraphs
+
+\usepackage{graphicx} % Required for including images
+
+\usepackage{fancyhdr} % Required for customizing headers and footers
+
+\fancypagestyle{firstpage}{%
+	\fancyhf{} % Clear default headers/footers
+	\renewcommand{\headrulewidth}{0pt} % No header rule
+	\renewcommand{\footrulewidth}{1pt} % Footer rule thickness
+}
+
+\fancypagestyle{subsequentpages}{%
+	\fancyhf{} % Clear default headers/footers
+	\renewcommand{\headrulewidth}{1pt} % Header rule thickness
+	\renewcommand{\footrulewidth}{1pt} % Footer rule thickness
+}
+
+\AtBeginDocument{\thispagestyle{firstpage}} % Use the first page headers/footers style on the first page
+\pagestyle{subsequentpages} % Use the subsequent pages headers/footers style on subsequent pages
+
+% %----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	FIRST PAGE HEADER
+%----------------------------------------------------------------------------------------
+\begin{center}
+    \includegraphics[width=0.2\textwidth]{Assets/BJTU.png} % Logo
+\includegraphics[width=0.2\textwidth]{Assets/TJU.png} % Logo
+\includegraphics[width=0.2\textwidth]{Assets/UCDavis.png} % Logo
+\end{center}
+
+
+\vspace{-1em} % Pull the rule closer to the logo
+
+\rule{\linewidth}{1pt} % Horizontal rule
+
+\bigskip\bigskip % Vertical whitespace
+
+%----------------------------------------------------------------------------------------
+%	YOUR NAME AND CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\hfill
+\begin{tabular}{l @{}}
+\hfill Rui Jiang \\
+\hfill Email: jiangrui@bjtu.edu.cn \\
+\hfill No.3 Shangyuancun, Haidian District,\\
+\hfill Beijing, 100044, China \\ % Address
+\end{tabular}
+
+\bigskip % Vertical whitespace
+
+%----------------------------------------------------------------------------------------
+%	ADDRESSEE AND GREETING
+%----------------------------------------------------------------------------------------
+\vspace{-3 em} % Pull the rule closer to the logo
+
+\bigskip % Vertical whitespace
+
+Dear Editor-in-chief ,
+
+\bigskip % Vertical whitespace
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT
+%----------------------------------------------------------------------------------------
+On behalf of all authors, I am delighted to submit our manuscript titled \textbf{"Twenty-Five Years of the Intelligent Driver Model: A Bibliometric Analysis and Systematic Literature Review"} to \textit{Transportation Research Part B} for consideration of publication. This paper commemorates the 25th anniversary of the Intelligent Driver Model (IDM), a landmark microscopic traffic flow model, by providing a comprehensive bibliometric analysis and systematic review of its theoretical and practical contributions.
+
+Traffic flow modeling is a cornerstone of transportation research, offering critical insights into traffic dynamics and supporting the development of intelligent transportation solutions. Among the various car-following models, IDM stands out due to its simplicity, robustness, and ability to accurately capture traffic phenomena. Since its introduction by Treiber et al. in 2000, IDM has been cited nearly 3,000 times, underscoring its profound impact on the field. Notably, Transportation Research Part B has featured numerous articles citing IDM, among which more than 23 papers provide substantial analyses through theoretical explorations, methodological advancements, and model extensions to address emerging transportation challenges.
+
+Key contributions of our manuscript include:
+\begin{itemize}
+    \item \textbf{Comprehensive Bibliometric Analysis}: We examine 313 carefully selected articles citing IDM, highlighting influential papers, leading authors, and research trends over the past 25 years.
+    \item \textbf{Systematic Review of IDM Research}: The literature is reviewed through the lens of four key themes: the original IDM overview, theoretical applications, practical applications, and model extensions.
+    \item \textbf{Critical Gaps and Future Directions}:  Our study identifies research gaps, including the integration of IDM with human-machine interaction technologies, and proposes potential directions for future studies.
+
+\end{itemize}
+
+Through this work, we aim to provide a structured understanding of IDM’s evolution, its interdisciplinary impact, and its pivotal role in advancing transportation research. The paper not only highlights IDM’s contributions to traffic flow theory but also explores its applications in shaping future transportation systems, aligning closely with the mission and scope of \textit{Transportation Research Part B}.
+
+
+We would be grateful for your favorable consideration.
+\bigskip % Vertical whitespace
+Thank you very much,
+
+Best Regards,
+
+Sincerely yours,
+
+Rui Jiang
+
+\today
+
+\end{document}
+

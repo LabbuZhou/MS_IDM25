@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+
+\begin{document}
+% The focus seems to be the main problem: You wrote the IDM review as a bibliometric paper while the authors want the focus directed more towards the actual contents: In which way the IDM is useful? Where are its weaknesses? Do the many IDM derivatives overcome its weak points making the IDM more useful for specialized applications? You also include these points but only as a subsection 3.4. I think, you should make a top-level section out of it named, e.g., "Critical Discussion of the IDM and its Extensions"
+
+% For reference, I attach the IDM related chapter of my new edition of Traffic FLow Dynamics (to be published this Autom) where 12.4.1 describes the main weaknesses regarding the acceleration function. Other weaknesses include a missing reaction time and missing human factors.
+
+% The following list could serve as a basis for answering most of the reviewer's comments
+
+% Model extension \& overcomes following weakness(es)  \& Use case\\
+
+% Plain old IDM  \& -  \& Basis for more realistic models since it is arguably the simplest accident-free car-following model with realistic acceleration; reference for calibration investigations; reference for comparisons ("Gold standard") whenever a new model is proposed, including AI models based on supervised or reinforcement learning; "physics" part of "physics-informed" machine-learning models; background model for creating traffic flows for testing V2V and V2I communication technologies; background model for reactive surrounding traffic in academic driving simulators\\
+
+% IDM+, IIDM  \& time-gap parameter T really denotes the steady-=state time gap  \& Since it is of similar complexity as the IDM, it has the same use cases as the original IDM if a triangular instead of a curved fundamental diagram is desired \\
+
+% ACC model (Section 12.5 of attached book chapter) based on the IDM+  \& overcomes too sensitive reactions after cut-ins or general lane changes and includes jerk control  \& model for adaptive-cruise control and the longitudinal control of autonomous vehicles. (Notice: Physical cars have been driven on test tracks and in public traffic with this model. It works!)
+
+% IDMM (IDM with memory)  \& includes the human factor "adaptation to a traffic state"  \& models observed traffic flow dynamics
+
+% Various variants of IDM with stochasticity such as HDM, IDM-2d and variants, IDM with action points, IDM with direct acceleration noise or random parameters  \& introduce human factors  \& reproduce platoon experiments ("concave growth") \\
+
+% IDM with dynamic time-gap parameter, IDM-2d and variants, variance-driven model [Phys. Rev. E 74, 016123]  \& includes the human factor risk allostasis and task difficulty homeostasis (drivers become more defensive in difficult situations such that the overall driving difficulty remains constant). Alternatively, it includes a certain indifference region of time gaps  \& describing observed naturalistic data and  platooning experiments \\
+
+% IDM with reaction time, multi-anticipative IDM, Human-driver model (HDM)  \& includes the human factors reaction time, estimation errors, multi-anticipation  \& more realistic modelling of human drivers
+
+% IDM-based lane-changing model MOBIL (the ACC model is particularly useful as basis)  \& Modelling lane changes while preserving the individual driver's traits  \& situations with lane changes \\
+
+
+% Specific comments to some of the reviewer's comments:
+
+% Reviewer 1 Comment 5: In contrast to what is often stated, the stability of the IDM is NOT a problem for practical applications! For reproducing actual traffic flow instabilities, I often parameterise the IDM to be very unstable. However, if a more stable IDM is desired, just increase the acceleration parameter a which is the main lever to change stability: The higher a, the more stable the IDM (and its derivatives) becomes. Realistic values of $a>1.5 m/s^2$ will result in a stable IDM for nearly all other plausible IDM parameter combinations (but such an IDM will not produce traffic waves)
+
+% Reviewer 1 Comment 6: The ballistic scheme is, for all practical purposes, the best as has been extensively investigated in [Treiber, M., Kanagaraj, V., 2015], particularly, it is better than Runge-Kutta 4 (RK4) and Euler. The higher consistency order 4 of RK4 is of no use when lane changes or other discrete events are included reducing the overall consistency order to 1. While Euler has the same consistency order 1 as the ballistic scheme, the prefactor of the numerical error is much smaller. Moreover, the ballistic scheme with larger update time gaps could be considered as a special case of the human factor "limited attention span/action points" with an action (i.e., a changed acceleration) only occuring at each timestep. Most researchers and simulators, including SUMO, use this scheme.
+
+% Reviewer 2, Comment 3: This is a crucial point because the unique selling point (USP) of the IDM is, as this reviewer puts it, "the intelligent braking strategy described in Treiber’s book". In the new submission, a focus must be given on this point since nearly other aspect has been changed more or less in the various IDM variants but all are based on the core USP of the IDM: its braking strategy making the IDM and its variants collision-free (if this is physically possible). This strategy is described in the attached book chapter.
+
+
+
+% Reviewer 2, Comment 4: As already mentioned, the main influencing factor for stability is the acceleration parameter a (increased stability if a increases), then T (increased if T increases), b (increased stability if b decreases), v0 (increased if v0 decreases) and for very congested traffic s0 (decreased stability if s0 increased). Please look at the stability analysis chapter of my textbook. The same applies to parameter calibration which is given in much detail in my calibration chapter.
+
+% Reviewer 2, Comment 6: In fact, heterogeneous traffic of autonomous/ACC driven and human driven vehicles (HDV) is a major strength of the various IDM variants. Unlike the unscientific way many authors conduct such experiments (just reparameterise the IDM or other models for the two categories), one could use the HDM extension for the HDVs and the ACC model extension for the ACC-driven vehicles. Interestingly, as detailled in my HDM paper, the weaknesses of human drivers (reaction times, estimation errors) are compensated for - at least to some degree - by their strengths (temporal anticipation, multi-anticipation). That's why both the HDM and the ACC model oftne produce similar patterns although the model components are different - but all being based on the very IDM core, the "intelligent" braking heuristics.
+
+% General: Some grammar corrections, e.g., "proved" -> "proven"
+\end{document}

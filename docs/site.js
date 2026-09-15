@@ -5,7 +5,7 @@ const figures = [
     note: 'Read from left to right: database retrieval and screening define the evidence base before bibliometric mapping and thematic synthesis. The diagram documents the historical study design; it is not a PRISMA flow count.'
   },
   {
-    title: 'Relevant publications, 2000鈥?024', file: 'NoP.png', wide: true,
+    title: 'Relevant publications, 2000-2024', file: 'NoP.png', wide: true,
     caption: 'Annual publication counts in the target-journal subset and the broader Web of Science citation set.',
     note: 'The figure shows a clear acceleration after 2010 and especially after 2021. The two series answer different questions and should not be treated as interchangeable sample sizes; the focused review corpus contains 313 screened papers.'
   },
@@ -17,7 +17,7 @@ const figures = [
   {
     title: 'Bibliographic coupling of countries', file: 'Country.png',
     caption: 'Country-level coupling network for the archived corpus.',
-    note: 'Node size reflects publication volume, link strength reflects shared reference patterns, and colors are algorithmic clusters. The map describes the dataset鈥檚 collaboration and citation structure, not national research quality.'
+    note: "Node size reflects publication volume, link strength reflects shared reference patterns, and colors are algorithmic clusters. The map describes the dataset's collaboration and citation structure, not national research quality."
   },
   {
     title: 'Bibliographic coupling of authors', file: 'Author.png',
@@ -124,9 +124,9 @@ const tables = [
     columns: ['Citations','Model','Foundational publication','Source','Citations/year','CPY rank'], numeric: [0,4,5],
     rows: [
       [2786,'IDM','Congested traffic states in empirical observations and microscopic simulations','Physical Review E',111.44,1],
-      [3382,'Nagel鈥揝chreckenberg (NaSch)','A cellular automaton model for freeway traffic','Journal de Physique',102.48,2],
+      [3382,'Nagel-Schreckenberg (NaSch)','A cellular automaton model for freeway traffic','Journal de Physique',102.48,2],
       [2216,'Cell Transmission Model (CTM)','The cell transmission model: a dynamic representation of highway traffic consistent with the hydrodynamic theory','Transportation Research Part B',71.48,3],
-      [3231,'Lighthill鈥揥hitham鈥揜ichards (LWR)','On kinematic waves II. A theory of traffic flow on long crowded roads','Proceedings of the Royal Society of London',46.16,4],
+      [3231,'Lighthill-Whitham-Richards (LWR)','On kinematic waves II. A theory of traffic flow on long crowded roads','Proceedings of the Royal Society of London',46.16,4],
       [1519,"Vickrey's bottleneck model",'Congestion theory and transport investment','American Economic Review',27.13,5]
     ],
     note: 'The IDM does not have the highest raw citation total in this cross-paradigm set, but it has the highest archived citations-per-year value. The models differ substantially in scale and purpose, so the comparison indicates reach rather than substitutability.'
@@ -139,8 +139,8 @@ const tables = [
       [1,'IEEE Transactions on Intelligent Transportation Systems','IEEE-TITS',114], [2,'Transportation Research Part C','TR-C',84],
       [3,'IEEE Transactions on Vehicular Technology','IEEE-TVT',25], [4,'Transportation Research Part B','TR-B',23],
       [5,'Accident Analysis and Prevention','AAP',14], [6,'IEEE Transactions on Intelligent Vehicles','IEEE-TIV',12],
-      [7,'Physica A','鈥?,8], [8,'Computer-Aided Civil and Infrastructure Engineering','CACIE',6],
-      [9,'Energy','鈥?,5], [9,'Physical Review E','PRE',5], [11,'Applied Energy','鈥?,4], [11,'Transportation Research Part D','TR-D',4]
+      [7,'Physica A','-',8], [8,'Computer-Aided Civil and Infrastructure Engineering','CACIE',6],
+      [9,'Energy','-',5], [9,'Physical Review E','PRE',5], [11,'Applied Energy','-',4], [11,'Transportation Research Part D','TR-D',4]
     ],
     note: 'Publication volume is concentrated in intelligent-transportation and transportation-methodology journals, with additional energy, safety, physics, and civil-engineering outlets. The table measures corpus volume, not journal prestige.'
   },
@@ -164,17 +164,17 @@ const tables = [
     rows: [
       [1,'Jiang R.','Beijing Jiaotong University, China',17,882,51.88,19], [2,'Treiber M.','Dresden University of Technology, Germany',14,1277,91.21,4],
       [3,'Zheng Z.','University of Queensland, Australia',13,832,64.00,14], [4,'Sun J.','Tongji University, China',12,302,25.17,24],
-      [5,'Ran B.','University of Wisconsin鈥揗adison, USA',10,302,30.20,22], [6,'Jia B.','Beijing Jiaotong University, China',9,597,66.33,12],
+      [5,'Ran B.','University of Wisconsin-Madison, USA',10,302,30.20,22], [6,'Jia B.','Beijing Jiaotong University, China',9,597,66.33,12],
       [7,'Wang H.','Southeast University, China',8,562,70.25,9], [8,'Wang W.','Southeast University, China',8,553,69.13,11],
       [9,'Li Y.','Central South University, China',8,472,59.00,16], [10,'Van Arem B.','Delft University of Technology, Netherlands',7,485,69.29,10],
-      [11,'Xing L.','Southeast University, China',7,449,64.14,13], [12,'Li X.','University of Wisconsin鈥揗adison, USA',7,403,57.57,17],
+      [11,'Xing L.','Southeast University, China',7,449,64.14,13], [12,'Li X.','University of Wisconsin-Madison, USA',7,403,57.57,17],
       [13,'Kesting A.','Dresden University of Technology, Germany',6,889,148.17,2], [14,'Montanino M.','University of Naples Federico II, Italy',6,513,85.50,6],
       [15,'Punzo V.','University of Naples Federico II, Italy',6,513,85.50,7], [16,'Gao Z.','Beijing Jiaotong University, China',6,506,84.33,8],
       [17,'Kochenderfer M. J.','Stanford University, USA',6,381,63.50,15], [18,'Tian J.','Tianjin University, China',6,258,43.00,21],
       [19,'Stern R.','University of Minnesota, USA',6,90,15.00,26], [20,'Qu X.','Tsinghua University, China',5,741,148.20,1],
       [21,'Wang M.','Delft University of Technology, Netherlands',5,646,129.20,3], [22,'Zhang H. M.','University of California, Davis, USA',5,440,88.00,5],
       [23,'Bhaskar A.','Queensland University of Technology, Australia',5,279,55.80,18], [24,'Ciuffo B.','European Commission Joint Research Centre, Italy',5,229,45.80,20],
-      [25,'Shi H.','University of Wisconsin鈥揗adison, USA',5,139,27.80,23], [26,'Shang M.','University of Minnesota, USA',5,114,22.80,25],
+      [25,'Shi H.','University of Wisconsin-Madison, USA',5,139,27.80,23], [26,'Shang M.','University of Minnesota, USA',5,114,22.80,25],
       [27,'Tian Y.','Tongji University, China',5,63,12.60,27], [28,'Wang S.','University of Minnesota, USA',5,61,12.20,28]
     ],
     note: 'TP highlights sustained activity, whereas TC/TP can be driven by a small number of highly cited articles. Name disambiguation and affiliation changes are common bibliometric limitations, so these values should not be used as individual-performance scores.'
@@ -184,7 +184,7 @@ const tables = [
     description: 'Abbreviations and full names used throughout the old systematic literature review.',
     columns: ['Abbreviation','Full name'], numeric: [],
     rows: [['ACC','Adaptive Cruise Control'],['CACC','Cooperative Adaptive Cruise Control'],['HV','Human-driven Vehicle'],['AV','Autonomous Vehicle'],['CV','Connected Vehicle'],['CAV','Connected and Autonomous Vehicle'],['RL','Reinforcement Learning'],['V2X','Vehicle to Everything'],['FF','Free Flow'],['CF','Car Following'],['MCMC','Markov Chain Monte Carlo'],['VANET','Vehicular Ad-hoc Network'],['VSL','Variable Speed Limits']],
-    note: 'Terminology follows the archived manuscript. Some communities use variants such as 鈥渁utomated vehicle鈥?for AV or distinguish connected automated vehicles from connected and autonomous vehicles.'
+    note: 'Terminology follows the archived manuscript. Some communities use variants such as "automated vehicle" for AV or distinguish connected automated vehicles from connected and autonomous vehicles.'
   }
 ];
 
@@ -212,7 +212,7 @@ function renderTable(table, index) {
   let input;
   if (table.filter) {
     const tools = document.createElement('div'); tools.className = 'table-tools';
-    input = document.createElement('input'); input.type = 'search'; input.placeholder = 'Filter titles, authors, or journals鈥?; input.setAttribute('aria-label', `Filter ${table.title}`);
+    input = document.createElement('input'); input.type = 'search'; input.placeholder = 'Filter titles, authors, or journals...'; input.setAttribute('aria-label', `Filter ${table.title}`);
     tools.append(input); heading.append(tools);
   }
   const scroll = document.createElement('div'); scroll.className = 'table-scroll';

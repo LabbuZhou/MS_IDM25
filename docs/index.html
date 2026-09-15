@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Historical bibliometric companion to the review of twenty-five years of the Intelligent Driver Model.">
+  <title>IDM Bibliometric Companion</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="IDM Bibliometric Companion home"><span>IDM</span> Bibliometric Companion</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="navigation">Menu</button>
+    <nav id="navigation" aria-label="Primary navigation">
+      <a href="#scope">Scope</a>
+      <a href="#figures">Figures</a>
+      <a href="#tables">Tables</a>
+      <a href="#method">Method</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <div>
+        <p class="eyebrow">Historical research companion 路 frozen 31 December 2024</p>
+        <h1>Twenty-five years of the Intelligent Driver Model</h1>
+        <p class="lead">A browsable record of the figures and tables from the earlier bibliometric analysis that informed the current review.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#figures">Explore the figures</a>
+          <a class="button secondary" href="#tables">Browse all tables</a>
+        </div>
+      </div>
+      <aside class="scope-card">
+        <p class="kicker">Read this first</p>
+        <h2>Archive, not a live dashboard</h2>
+        <p>Counts reproduce the archived 2024 study. Citation databases change continuously, so these values should be read as a dated snapshot rather than current rankings.</p>
+        <p>The current review contains the authors' up-to-date scientific synthesis; this page preserves the earlier quantitative context.</p>
+      </aside>
+    </section>
+
+    <section id="scope" class="metrics" aria-label="Archived dataset summary">
+      <article><strong>313</strong><span>papers retained for focused review</span></article>
+      <article><strong>2,786</strong><span>citations to the original IDM paper</span></article>
+      <article><strong>29</strong><span>target journals represented</span></article>
+      <article><strong>856</strong><span>authors observed in the screened corpus</span></article>
+    </section>
+
+    <section id="figures" class="section">
+      <div class="section-heading">
+        <p class="section-number">01 / Figures</p>
+        <h2>All figures from the archived study</h2>
+        <p>Open any image to inspect the original-resolution figure. Each note separates what the figure contains from the interpretation supported by the frozen dataset.</p>
+      </div>
+      <div id="figure-grid" class="figure-grid"></div>
+    </section>
+
+    <section id="tables" class="section tables-section">
+      <div class="section-heading">
+        <p class="section-number">02 / Tables</p>
+        <h2>Complete archived tables</h2>
+        <p>All seven formal tables in the old manuscript are reproduced below. Large tables scroll horizontally on small screens; the Top 50 table can also be filtered.</p>
+      </div>
+      <div id="table-list" class="table-list"></div>
+    </section>
+
+    <section id="method" class="section method-grid">
+      <div>
+        <p class="section-number">03 / Method</p>
+        <h2>How this archive was assembled</h2>
+      </div>
+      <div class="method-copy">
+        <p>The original study searched the Web of Science Core Collection for works citing the seminal 2000 IDM paper, then applied a target-journal screen and excluded papers that mentioned the IDM only in passing. The resulting focused corpus contained 313 papers.</p>
+        <p>Network visualizations were produced with VOSviewer. Publication, citation, country, author, and journal values are reproduced from the archived manuscript and therefore retain its database coverage, thresholds, and December 2024 cut-off.</p>
+        <div class="notice"><strong>Responsible use.</strong> Citation counts describe database records, not intrinsic scientific quality. Rankings should not be used to evaluate individual researchers, countries, or journals without further normalization and context.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>IDM Bibliometric Companion 路 historical snapshot as of 31 December 2024</p>
+    <a href="https://github.com/LabbuZhou/MS_IDM25">Source repository</a>
+  </footer>
+
+  <dialog id="lightbox" aria-label="Expanded figure">
+    <button class="close-button" type="button" aria-label="Close expanded figure">脳</button>
+    <img alt="">
+    <p></p>
+  </dialog>
+</body>
+</html>
+

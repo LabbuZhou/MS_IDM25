@@ -34,16 +34,6 @@ const figures = [
     caption: 'Taxonomy used to organize the systematic review.',
     note: 'The framework separates fundamentals, theoretical uses, practical applications, and extensions. Some papers span several branches; assignment to a primary category was a reading aid rather than a claim of mutual exclusivity.'
   },
-  {
-    title: 'Velocity-fluctuation growth in IDM simulations', file: 'IDM_Growth.png',
-    caption: 'Standard deviation of vehicle-speed time series in simulations compared with experimental observations reported by Jiang et al. (2014).',
-    note: 'Solid curves are IDM simulations and markers are experiment runs for different leader speeds. The comparison illustrates how perturbations evolve along a platoon; it is evidence from a specific experimental configuration, not a universal calibration result.'
-  },
-  {
-    title: 'Dynamic phase diagram of on-ramp congestion', file: 'IDMTP.png',
-    caption: 'IDM-simulated traffic patterns across demand conditions, reproduced from the archived review of Treiber et al. (2010).',
-    note: 'Regions identify free traffic (FT), localized clusters (PLC/MLC), congested traffic (HCT/OCT), and triggered stop-and-go waves (TSG). Boundaries depend on the modeled bottleneck and parameterization.'
-  }
 ];
 
 const topPapers = [

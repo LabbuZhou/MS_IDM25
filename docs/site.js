@@ -38,7 +38,7 @@ const figures = [
 
 const topPapers = [
   [1,'TR-C',880,'Influence of Connected and Autonomous Vehicles on Traffic Flow Stability and Throughput','Talebpour & Mahmassani (2016)',97.78,1],
-  [2,'TR-C',690,'Modeling Cooperative and Autonomous Adaptive Cruise Control Dynamic Responses Using Experimental Data','Milan茅s & Shladover (2014)',62.73,2],
+  [2,'TR-C',690,'Modeling Cooperative and Autonomous Adaptive Cruise Control Dynamic Responses Using Experimental Data','Milan\u00e9s & Shladover (2014)',62.73,2],
   [3,'TR-C',419,'Adaptive Cruise Control Design for Active Congestion Avoidance','Kesting et al. (2008)',24.65,16],
   [4,'Physica A',375,'Delays, Inaccuracies and Anticipation in Microscopic Traffic Models','Treiber et al. (2006)',19.74,32],
   [5,'TR-C',307,'Modeling Car-Following Behavior on Urban Expressways in Shanghai: A Naturalistic Driving Study','Zhu et al. (2018)',43.86,3],
